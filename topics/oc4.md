@@ -42,3 +42,6 @@ oc --config ocp/auth/kubeconfig get machines -n openshift-machine-api --no-heade
 ```
 OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE=registry.svc.ci.openshift.org/ocp/release:4.2.0-0.nightly-2019-08-19-113631
 ```
+
+- Change SDN on installation time:
+    - https://docs.openshift.com/container-platform/4.1/installing/installing_aws/installing-aws-network-customizations.html#network-customization-config-yaml_installing-aws-network-customizations
