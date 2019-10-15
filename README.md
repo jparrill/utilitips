@@ -18,7 +18,7 @@ A repository to store utilities and tips of multiple topics
 ### Security
 
 - [GPG](topics/gpg.md)
-- [VPN](topics/vpn.md)
+- [VPN](topics/vpn.md.gpg)
 
 ### Virtualization
 
