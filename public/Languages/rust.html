@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>VPN - Utilitips</title>
+        <title>Rust - Utilitips</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html" class="active">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html" class="active">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,20 +145,171 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#vpn" id="vpn">VPN</a></h1>
+                        <h1><a class="header" href="#rust" id="rust">Rust</a></h1>
+<h2><a class="header" href="#fedora-perks" id="fedora-perks">Fedora Perks</a></h2>
+<ul>
+<li>DNF</li>
+</ul>
+<pre><code>sudo dnf install rust rust-doc.x86_64 rust-std-static.x86_64 rust-debugger-common.noarch rust-analysis.x86_64 rust-packaging.x86_64 --best --allowerasing -y
+</code></pre>
+<ul>
+<li>Nvim</li>
+</ul>
+<pre><code>call plug#begin('~/.vim/plugged')
+&quot; Rust
+Plug 'rust-lang/rust'
+Plug 'rust-lang/rust.vim'
+call plug#end()
+</code></pre>
+<h2><a class="header" href="#lang" id="lang">Lang</a></h2>
+<ul>
+<li>Immutable, this next program will not compile</li>
+</ul>
+<pre><code>let var = &quot;lol&quot;;
+var = &quot;chorizo&quot;;
+</code></pre>
+<ul>
+<li>If you want a mutable var just:</li>
+</ul>
+<pre><code>let mut var = 1;
+var = var + 1;
+var = var + 15;
+</code></pre>
+<ul>
+<li>First Functions</li>
+</ul>
+<pre><code>fn main() {
+    println!(&quot;Hello World&quot;);
+}
+</code></pre>
+<pre><code>fn main() {
+    let a = 1;
+    let b = 2;
+    println!(&quot;{} + {} is {}&quot;, a, b, a+b);
+}
+</code></pre>
+<ul>
+<li>Types</li>
+</ul>
+<pre><code># Bools
+
+let x = true;
+let x: bool = true;
+let y = false &amp;&amp; true; #False
+
+
+# Chars
+## Not 8-bit like C, but unicode scalars which means that support unicode ootb
+
+let c: char = &quot;A&quot;;
+let d: char = &quot;&quot;;
+
+
+# Integers (like C)
+
+let a: i8 = -15;
+let b: u8 = 250;
+let c: i16 = -356;
+let d: u16 = 1029;
+let f: i32 = -31337;
+let g: u32 = 42949672;
+let h: i64 = -4294967295;
+let i: u64 = 18446744073709551615;
+let j: isize = -1;  # Signed 
+let k: usize = 1;   # Unsigned
+
+
+# Floating
+
+let single: f32 = 1.1225 * 10.0;
+let double: f64 = 1.2e-15;
+
+
+# Containers
+
+let array: [i8, 3] = [1, 4, 7];
+let tuple: (i32, char) = (21, 'x');
+println!(&quot;{}, {}&quot;, array[1], tuple.1); # Will print 4, x
+
+
+# Functions Parameters
+
+fn add(a: i32, b: i32) -&gt; i32 {
+    return a + b;
+}
+
+fn add_2(a: i32, b: i64) -&gt; i32 {
+    return a + (b as i32);
+}
+
+fn main() {
+    let a = 1;
+    let b = 3;
+    println!(&quot;{} + {} is {}&quot;, a, b, add(a,b));
+    println!(&quot;{} + {} is {}&quot;, a, b, add_2(a,b));
+}
+</code></pre>
+<ul>
+<li>Crates and Modules</li>
+</ul>
+<pre><code>use std::collections::LinkedList;
+
+fn main() {
+    let mut ll = LinkedList::new();
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_back(4);
+
+    for a in ll {
+        println!(&quot;{}&quot;, a);
+    }
+}
+</code></pre>
+<pre><code>use std::collections::Vec;
+
+fn main() {
+    let mut v = Vec::new();
+    v.push('x');
+    v.push('y');
+    v.push('z');
+
+    for a in v {
+        println!(&quot;{}&quot;, a);
+    }
+}
+</code></pre>
+<ul>
+<li>New module</li>
+</ul>
+<pre><code>use hello::say_hello;
+
+mod hello {
+    pub fn say_hello() {
+        println(&quot;Hello World!&quot;);
+    }
+}
+
+fn main() {
+    say_hello();
+}
+</code></pre>
+<h2><a class="header" href="#resources" id="resources">Resources</a></h2>
+<ul>
+<li>play.rust-lang.org</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../Security/gpg.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../Languages/c.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../Security/iptables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../Containers/k8s.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -170,13 +321,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../Security/gpg.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../Languages/c.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../Security/iptables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../Containers/k8s.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -184,21 +335,6 @@
 
         </div>
 
-        
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         
 
         

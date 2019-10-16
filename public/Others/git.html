@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Ansible - Utilitips</title>
+        <title>Git - Utilitips</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html" class="active">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html" class="active">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,109 +145,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#ansible-cheatsheet" id="ansible-cheatsheet">Ansible Cheatsheet</a></h1>
-<ul>
-<li>Cgroups and callbacks</li>
-</ul>
-<pre><code>sudo cgcreate -a user:user -t user:user &gt; -g cpuacct,memory,pids:ansible_profile
-
-# on ansible.cfg
-callback_whitelist=cgroup_perf_recap[callback_cgroup_perf_recap]control_group=ansible_profile
-
-cgexec -g cpuacct,memory,pids:ansible_profile &gt; ansible-playbook deploy_webservers.yml
+                        <h1><a class="header" href="#git-cheatsheet" id="git-cheatsheet">Git Cheatsheet</a></h1>
+<h2><a class="header" href="#force-sync-a-fork" id="force-sync-a-fork">Force Sync a fork</a></h2>
+<pre><code>git remote add upstream https://github.com/some_user/some_repo
+git fetch upstream
+git checkout master
+git reset --hard upstream/master  
+git push origin master --force
 </code></pre>
-<ul>
-<li>Listen on handlers</li>
-</ul>
-<pre><code># Listening to the &quot;My handlers&quot; event
-- name: Listening to a notification
-  debug:
-    msg: First handler was notified
-  listen: My handlers
+<p>REF: https://gist.github.com/ravibhure/a7e0918ff4937c9ea1c456698dcd58aa</p>
+<h2><a class="header" href="#stash-changes-to-apply-in-other-branch" id="stash-changes-to-apply-in-other-branch">Stash changes to apply in other branch</a></h2>
+<pre><code>git stash
+git checkout -b xxx
+git stash pop
 </code></pre>
-<ul>
-<li>Add callback to ansible.cfg</li>
-</ul>
-<pre><code>callback_whitelist=timer, profile_tasks
-</code></pre>
-<ul>
-<li>Concatenate 2 Arrays:</li>
-</ul>
-<pre><code>&quot;{{ apache_base_packages | union(apache_optional_packages) }}&quot;
-</code></pre>
-<ul>
-<li>Avoid to fail by a lookup error</li>
-</ul>
-<pre><code>{{ lookup('file', 'my.file', errors='warn') | default(&quot;Default file content&quot;) }}
-</code></pre>
-<ul>
-<li>Execute commands from Lookup on control node</li>
-</ul>
-<pre><code>{{ query('pipe', 'ls files') }}
-</code></pre>
-<ul>
-<li>from yaml</li>
-</ul>
-<pre><code>my_yaml: &quot;{{ lookup('file', '/path/to/my.yaml') | from_yaml }}&quot;
-</code></pre>
-<ul>
-<li>Loop over file lines</li>
-</ul>
-<pre><code>- name: Prints the first line of some files
-  debug:
-    msg: &quot;{{ item[0] }}&quot;
-  loop:
-    - &quot;{{ query('lines', 'cat files/my.file') }}&quot;
-</code></pre>
-<ul>
-<li>dig over a host</li>
-</ul>
-<pre><code># It needs python3-dns rpm
-
-- name: Determinte if host's ip address is private
-  debug:
-    msg: &quot;{{ lookup('dig', ansible_facts['hostname'] ) | ipaddr('private') }}&quot;
-
-&quot;{{ lookup('dig', 'example.com', '@4.4.8.8,4.4.4.4) }}&quot;
-
-</code></pre>
-<ul>
-<li>Fail all if 1 steps fails</li>
-</ul>
-<pre><code>max_fail_percentage: 0
-</code></pre>
-<ul>
-<li>Interacting with Tower API</li>
-</ul>
-<pre><code>- name: Delete an existing Ansible Tower Job Template using the uri module
-  uri:
-    url: &quot;https://{{ tower_fqdn }}/api/v2/job_templates/{{ copy_template_name | urlencode }}/&quot;
-    validate_certs: no
-    method: DELETE￼
-    return_content: yes
-    force_basic_auth: yes
-    user: &quot;{{ tower_user }}&quot;
-    password: &quot;{{ tower_password }}&quot;
-    status_code: 204
-</code></pre>
-<ul>
-<li>Sample of SmartHostFilter</li>
-</ul>
-<pre><code>ansible_facts.ansible_distribution:RedHat
-</code></pre>
-<ul>
-<li>Change TLS cert for tower</li>
-</ul>
-<pre><code>semanage fcontext -a -t cert_t &quot;/etc/tower(/.*)?&quot;
-restorecon -FvvR /etc/tower/
-rm /etc/tower/tower.*
-ipa-getcert request -f /etc/tower/tower.cert \&gt; -k /etc/tower/tower.key
-ansible-tower-service restart
-</code></pre>
-<ul>
-<li>Grant role admin on Team</li>
-</ul>
-<pre><code>tower-cli role grant --user 'daniel' \&gt; --target-team 'Developers' --type 'admin'
+<p>REF: https://stackoverflow.com/questions/6925099/git-stash-changes-apply-to-new-branch</p>
+<h2><a class="header" href="#get-git-changes-from-origin-without-push" id="get-git-changes-from-origin-without-push">Get git changes from origin without push</a></h2>
+<pre><code>git reset --hard origin/master
+git pull --rebase origin master
+git status
 </code></pre>
 
                     </main>
@@ -255,9 +171,13 @@ ansible-tower-service restart
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../Security/iptables.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="../Languages/shell.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../Others/homelab.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -269,9 +189,13 @@ ansible-tower-service restart
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="../Security/iptables.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="../Languages/shell.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../Others/homelab.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -279,21 +203,6 @@ ansible-tower-service restart
 
         </div>
 
-        
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         
 
         

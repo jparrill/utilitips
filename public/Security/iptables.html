@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Virsh - Utilitips</title>
+        <title>Iptables - Utilitips</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html" class="active">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html" class="active">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,21 +145,22 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#virsh-cheatsheet" id="virsh-cheatsheet">virsh Cheatsheet</a></h1>
+                        <h1><a class="header" href="#iptables-tips" id="iptables-tips">Iptables tips</a></h1>
 <ul>
-<li>List ips assigned on a network</li>
+<li>Check rules that are bothering/blocking connections that you need</li>
 </ul>
-<pre><code>virsh net-dhcp-leases baremetal
+<pre><code>sudo iptables -vL | egrep 'REJECT|DROP'
 </code></pre>
-<ul>
-<li>List Networks</li>
-</ul>
-<pre><code>virsh net-list
-</code></pre>
-<ul>
-<li>List VMs</li>
-</ul>
-<pre><code>virsh list
+<pre><code>[jparrill@nostromo ~]$ sudo iptables -vL | egrep 'REJECT|DROP'
+    4   160 DROP       all  --  any    any     anywhere             anywhere             ctstate INVALID
+ 271K   50M REJECT     all  --  any    any     anywhere             anywhere             reject-with icmp-host-prohibited
+    0     0 DROP       all  --  any    any     anywhere             anywhere             ctstate INVALID
+    0     0 REJECT     all  --  any    any     anywhere             anywhere             reject-with icmp-host-prohibited
+    0     0 REJECT     all  --  any    covenant  anywhere             anywhere             reject-with icmp-port-unreachable
+   13   768 REJECT     all  --  any    virbr0  anywhere             anywhere             reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  covenant any     anywhere             anywhere             reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  virbr0 any     anywhere             anywhere             reject-with icmp-port-unreachable
+
 </code></pre>
 
                     </main>
@@ -167,13 +168,13 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../Containers/ocp.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../Security/vpn.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../Security/gpg.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../Others/git.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -185,13 +186,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../Containers/ocp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../Security/vpn.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../Security/gpg.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../Others/git.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -199,21 +200,6 @@
 
         </div>
 
-        
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         
 
         

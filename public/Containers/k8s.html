@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>HomeLab - Utilitips</title>
+        <title>Kubernetes - Utilitips</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html" class="active">HomeLab</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../Languages/ansible.html">Ansible</a></li><li class="affix"><a href="../Languages/shell.html">Shell</a></li><li class="affix"><a href="../Languages/c.html">C</a></li><li class="affix"><a href="../Languages/rust.html">Rust</a></li><li class="affix"><a href="../Containers/k8s.html" class="active">Kubernetes</a></li><li class="affix"><a href="../Containers/ocp.html">Openshift</a></li><li class="affix"><a href="../Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="../Security/gpg.html">GPG</a></li><li class="affix"><a href="../Security/vpn.html">VPN</a></li><li class="affix"><a href="../Security/iptables.html">Iptables</a></li><li class="affix"><a href="../Others/git.html">Git</a></li><li class="affix"><a href="../Others/homelab.html">HomeLab</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,60 +145,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#homelab" id="homelab">HomeLab</a></h1>
-<pre><code>iptables -t nat -A POSTROUTING -s 192.168.122.0/24 -o enp12s0 -j MASQUERADE
-</code></pre>
-<pre><code>firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.126.0/24 masquerade'
-firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.124.0/24 masquerade'
-firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.122.0/24 masquerade'
+                        <h1><a class="header" href="#k8s-cheatsheet" id="k8s-cheatsheet">K8s cheatsheet</a></h1>
+<ul>
+<li>Get Env vars from a deployment via jsonpath</li>
+</ul>
+<pre><code>kubectl get deployment.apps virt-operator -n kubevirt -o jsonpath='{.spec.template.spec.containers[0].env[?(@.name==&quot;KUBEVIRT_VERSION&quot;)].value}
 </code></pre>
 <ul>
-<li>sudo dnf install network-scripts -y</li>
+<li>Get Env vars from a deployment via template</li>
 </ul>
-<pre><code>[root@nostromo network-scripts]# cat ifcfg-br1
-DEVICE=br1
-NAME=br1
-TYPE=Bridge
-ONBOOT=yes
-BOOTPROTO=static
-NM_CONTROLLED=no
-PROXY_METHOD=none
-BROWSER_ONLY=no
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-IPADDR=192.168.1.101
-PREFIX=24
-GATEWAY=192.168.1.1
-DNS1=8.8.8.8
-DNS2=8.8.4.4
-IPV6_PRIVACY=no
+<pre><code>kubectl get  deployment.apps virt-operator -n kubevirt -o template  --template='{{range .spec.template.spec.containers}}{{.image}}{{end}} '|  awk -F: '{print $NF}'
 </code></pre>
-<pre><code>[root@nostromo network-scripts]# cat ifcfg-enp12s0
-TYPE=Ethernet
-BRIDGE=br1
-ONBOOT=yes
-BOOTPROTO=none
-NM_CONTROLLED=no
-MTU=1500
-NAME=enp12s0
-DEVICE=enp12s0
-</code></pre>
+<ul>
+<li>Useful for ^^ https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../Others/git.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../Languages/rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="../Containers/ocp.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -208,31 +183,20 @@ DEVICE=enp12s0
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../Others/git.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../Languages/rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
+                    <a href="../Containers/ocp.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
             </nav>
 
         </div>
 
-        
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         
 
         
