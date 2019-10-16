@@ -1,0 +1,11 @@
+[book]
+authors = ["Juan Manuel Parrilla Madrid"]
+language = "en"
+multilingual = false
+src = "topics"
+title = "Utilitips"
+
+[output.html]
+default-theme = "Coal"
+curly-quotes = true
+

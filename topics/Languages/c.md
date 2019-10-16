@@ -36,14 +36,14 @@ C character	Trigraph
 
 - Keywords
 ```
-auto	    double	int	        struct
-break	    else	long	    switch
-case	    enum	register	typedef
-char	    extern	return	    union
-const	    float	short	    unsigned
-continue	for	    signed	    void
-default	    goto	sizeof	    volatile
-do	        if	    static	    while
+auto       double   int        struct
+break      else     long       switch
+case       enum     register   typedef
+char       extern   return     union
+const      float    short      unsigned
+continue   for      signed     void
+default    goto     sizeof     volatile
+do         if       static     while
 ```
 
 - The range specified in the Standard for an unsigned int is 0 to at least 65535, meaning that it cannot be negative
@@ -150,13 +150,13 @@ pcnt_diff = 100/(float)curr_val;
 ```
 
 ```
-Declaration	    Cast	        Type
+Declaration     Cast            Type
 ---------------------------------------
-int x;	        (int)	        int
-float f;	    (float)	        float
-char x[30];	    (char [30])	    array of char
-int *ip;	    (int *)	        pointer to int
-int (*f)();	    (int (*)())	    pointer to function returning int
+int x;          (int)           int
+float f;        (float)         float
+char x[30];     (char [30])     array of char
+int *ip;        (int *)         pointer to int
+int (*f)();     (int (*)())     pointer to function returning int
 ```
 
 
@@ -198,22 +198,22 @@ x++; /* or */ ++x;
 
 - Precedence and grouping
 ```
-Operator	                        Direction	    Notes
-() [] -> .	                        left to right	1
-! ~ ++ -- - + (cast) * & sizeof	    right to left	all unary
-* / %	                            left to right	binary
-+ -	                                left to right	binary
-<< >>	                            left to right	binary
-< <= > >=	                        left to right	binary
-== !=	                            left to right	binary
-&	                                left to right	binary
-^	                                left to right	binary
-|	                                left to right	binary
-&&	                                left to right	binary
-||	                                left to right	binary
-?:	                                right to left	2
-= += and all combined assignment	right to left	binary
-,	                                left to right	binary
+Operator                                    Direction       Notes
+() [] -> .                                  left to right   1
+! ~ ++ -- - + (cast) * & sizeof             right to left   all unary
+* / %                                       left to right   binary
++ -                                         left to right   binary
+<< >>                                       left to right   binary
+< <= > >=                                   left to right   binary
+== !=                                       left to right   binary
+&                                           left to right   binary
+^                                           left to right   binary
+|                                           left to right   binary
+&&                                          left to right   binary
+||                                          left to right   binary
+?:                                          right to left   2
+= += and all combined assignment            right to left   binary
+,                                           left to right   binary
 ```
 
 - Parentheses

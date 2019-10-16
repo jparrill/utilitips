@@ -5,27 +5,27 @@ A repository to store utilities and tips of multiple topics
 
 ### Languages
 
-- [Rust](topics/rust.md)
-- [C](topics/c.md)
-- [Ansible](topics/ansible.md)
-- [Shell](topics/shell.md)
+- [Rust](topics/Languages/rust.md)
+- [C](topics/Languages/c.md)
+- [Ansible](topics/Languages/ansible.md)
+- [Shell](topics/Languages/shell.md)
 
 ### Containers
 
-- [Openshift](topics/ocp.md)
-- [K8s](topics/k8s.md)
+- [Openshift](topics/Containers/ocp.md)
+- [K8s](topics/Containers/k8s.md)
 
 ### Security
 
-- [GPG](topics/gpg.md)
-- [VPN](topics/vpn.md.gpg)
-- [Iptables](topics/iptables.md)
+- [GPG](topics/Security/gpg.md)
+- [VPN](topics/Security/vpn.md.gpg)
+- [Iptables](topics/Security/iptables.md)
 
 ### Virtualization
 
-- [Virsh](topics/virsh.md)
+- [Virsh](topics/Virtualization/virsh.md)
 
 ### Others
 
-- [Git](topics/git.md)
-- [HomeLab](topics/homelab.md)
+- [Git](topics/Others/git.md)
+- [HomeLab](topics/Others/homelab.md)

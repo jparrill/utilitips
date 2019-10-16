@@ -1,0 +1,979 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Utilitips</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="Coal">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "Coal";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="affix"><a href="Languages/ansible.html">Ansible</a></li><li class="affix"><a href="Languages/shell.html">Shell</a></li><li class="affix"><a href="Languages/c.html">C</a></li><li class="affix"><a href="Languages/rust.html">Rust</a></li><li class="affix"><a href="Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="Containers/ocp.html">Openshift</a></li><li class="affix"><a href="Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="Security/gpg.html">GPG</a></li><li class="affix"><a href="Security/vpn.html">VPN</a></li><li class="affix"><a href="Security/iptables.html">Iptables</a></li><li class="affix"><a href="Others/git.html">Git</a></li><li class="affix"><a href="Others/homelab.html">HomeLab</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Utilitips</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#ansible-cheatsheet" id="ansible-cheatsheet">Ansible Cheatsheet</a></h1>
+<ul>
+<li>Cgroups and callbacks</li>
+</ul>
+<pre><code>sudo cgcreate -a user:user -t user:user &gt; -g cpuacct,memory,pids:ansible_profile
+
+# on ansible.cfg
+callback_whitelist=cgroup_perf_recap[callback_cgroup_perf_recap]control_group=ansible_profile
+
+cgexec -g cpuacct,memory,pids:ansible_profile &gt; ansible-playbook deploy_webservers.yml
+</code></pre>
+<ul>
+<li>Listen on handlers</li>
+</ul>
+<pre><code># Listening to the &quot;My handlers&quot; event
+- name: Listening to a notification
+  debug:
+    msg: First handler was notified
+  listen: My handlers
+</code></pre>
+<ul>
+<li>Add callback to ansible.cfg</li>
+</ul>
+<pre><code>callback_whitelist=timer, profile_tasks
+</code></pre>
+<ul>
+<li>Concatenate 2 Arrays:</li>
+</ul>
+<pre><code>&quot;{{ apache_base_packages | union(apache_optional_packages) }}&quot;
+</code></pre>
+<ul>
+<li>Avoid to fail by a lookup error</li>
+</ul>
+<pre><code>{{ lookup('file', 'my.file', errors='warn') | default(&quot;Default file content&quot;) }}
+</code></pre>
+<ul>
+<li>Execute commands from Lookup on control node</li>
+</ul>
+<pre><code>{{ query('pipe', 'ls files') }}
+</code></pre>
+<ul>
+<li>from yaml</li>
+</ul>
+<pre><code>my_yaml: &quot;{{ lookup('file', '/path/to/my.yaml') | from_yaml }}&quot;
+</code></pre>
+<ul>
+<li>Loop over file lines</li>
+</ul>
+<pre><code>- name: Prints the first line of some files
+  debug:
+    msg: &quot;{{ item[0] }}&quot;
+  loop:
+    - &quot;{{ query('lines', 'cat files/my.file') }}&quot;
+</code></pre>
+<ul>
+<li>dig over a host</li>
+</ul>
+<pre><code># It needs python3-dns rpm
+
+- name: Determinte if host's ip address is private
+  debug:
+    msg: &quot;{{ lookup('dig', ansible_facts['hostname'] ) | ipaddr('private') }}&quot;
+
+&quot;{{ lookup('dig', 'example.com', '@4.4.8.8,4.4.4.4) }}&quot;
+
+</code></pre>
+<ul>
+<li>Fail all if 1 steps fails</li>
+</ul>
+<pre><code>max_fail_percentage: 0
+</code></pre>
+<ul>
+<li>Interacting with Tower API</li>
+</ul>
+<pre><code>- name: Delete an existing Ansible Tower Job Template using the uri module
+  uri:
+    url: &quot;https://{{ tower_fqdn }}/api/v2/job_templates/{{ copy_template_name | urlencode }}/&quot;
+    validate_certs: no
+    method: DELETE￼
+    return_content: yes
+    force_basic_auth: yes
+    user: &quot;{{ tower_user }}&quot;
+    password: &quot;{{ tower_password }}&quot;
+    status_code: 204
+</code></pre>
+<ul>
+<li>Sample of SmartHostFilter</li>
+</ul>
+<pre><code>ansible_facts.ansible_distribution:RedHat
+</code></pre>
+<ul>
+<li>Change TLS cert for tower</li>
+</ul>
+<pre><code>semanage fcontext -a -t cert_t &quot;/etc/tower(/.*)?&quot;
+restorecon -FvvR /etc/tower/
+rm /etc/tower/tower.*
+ipa-getcert request -f /etc/tower/tower.cert \&gt; -k /etc/tower/tower.key
+ansible-tower-service restart
+</code></pre>
+<ul>
+<li>Grant role admin on Team</li>
+</ul>
+<pre><code>tower-cli role grant --user 'daniel' \&gt; --target-team 'Developers' --type 'admin'
+</code></pre>
+<h1><a class="header" href="#shell-cheatsheet" id="shell-cheatsheet">Shell Cheatsheet</a></h1>
+<h2><a class="header" href="#search-and-replace" id="search-and-replace">Search and replace</a></h2>
+<pre><code>grep -rl 'apples' /dir_to_search_under | xargs sed -i 's/apples/oranges/g'
+</code></pre>
+<h2><a class="header" href="#install-dvd-iso-into-a-usb" id="install-dvd-iso-into-a-usb">Install DVD Iso into a USB</a></h2>
+<pre><code>fdisk -l
+Disk /dev/sdb: 28.9 GiB, 31004295168 bytes, 60555264 sectors
+Disk model: DataTraveler 3.0
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x0985b0db
+
+
+sudo ddrescue ~/Descargas/rhel-8.0-x86_64-dvd.iso /dev/sdb --force -D
+</code></pre>
+<h1><a class="header" href="#c-cheatsheet-and-things-to-remember" id="c-cheatsheet-and-things-to-remember">C Cheatsheet and things to remember</a></h1>
+<ul>
+<li>Finish a C program from non-main function <a href="https://publications.gbdirect.co.uk/c_book/chapter1/description_of_example.html">1.3.10 - The Return Statement</a></li>
+</ul>
+<pre><code>...Returning from the main function is the same as calling the library function exit with the return value as an argument. The difference is that exit may be called from anywhere in the program, and terminates it at that point, after doing some tidying up activities. If you intend to use exit, you must include the header file &lt;stdlib.h&gt;. From now on, we shall use exit rather than returning from main.
+
+TL;DR
+
+EXIT_SUCCESS and EXIT_FAILURE for main function, exit for others
+</code></pre>
+<ul>
+<li>Get an int lenght</li>
+</ul>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+int length = (int)floor(log10((float)number)) + 1;
+</code></pre>
+<ul>
+<li>Trygraphs</li>
+</ul>
+<pre><code>
+C character	Trigraph
+       #	??=
+       [	??(
+       ]	??)
+       {	??&lt;
+       }	??&gt;
+       \	??/
+       |	??!
+       ~	??-
+       ^	??'
+</code></pre>
+<ul>
+<li>Keywords</li>
+</ul>
+<pre><code>auto       double   int        struct
+break      else     long       switch
+case       enum     register   typedef
+char       extern   return     union
+const      float    short      unsigned
+continue   for      signed     void
+default    goto     sizeof     volatile
+do         if       static     while
+</code></pre>
+<ul>
+<li>
+<p>The range specified in the Standard for an unsigned int is 0 to at least 65535, meaning that it cannot be negative</p>
+</li>
+<li>
+<p>Unsigned/Signed Int conversion: https://stackoverflow.com/questions/50605/signed-to-unsigned-conversion-in-c-is-it-always-safe </p>
+</li>
+</ul>
+<p>6.2.5 (9)
+A computation involving unsigned operands can never overflow, because a result that cannot be represented by the resulting unsigned integer type is reduced modulo the number that is one greater than the largest value that can be represented by the resulting type.</p>
+<ul>
+<li>Bonus: Arithmetic Conversion Semi-WTF</li>
+</ul>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+  unsigned int plus_one = 1;
+  int minus_one = -1;
+
+  if(plus_one &lt; minus_one)
+    printf(&quot;1 &lt; -1&quot;);
+  else
+    printf(&quot;boring&quot;);
+
+  return 0;
+}
+</code></pre>
+<p>More conversions:</p>
+<pre><code>unsigned int u;
+int s = 1;
+u = s;
+</code></pre>
+<p>But if the integer is negative the interpreter will just copy the bits, so you can do something like this:</p>
+<pre><code>#include &lt;stdio.h&gt;
+ 
+int main() {
+ 
+  unsigned int u;
+  int s = -5;
+  u = s; 
+  u = (s &gt;= 0 ? s:-s);
+ 
+  return 0;
+ 
+}
+</code></pre>
+<ul>
+<li>The usual arithmetic conversions (following thi hierarchy)</li>
+</ul>
+<p>if either operand is  Double Large, then Double large
+elif “” Double, then Double
+elif “” Float, then Float
+elif “” Unsigned Long Int, then Unsigned Long Int
+elif “” Long int, then Long int
+elif “” Unsigned Int, then Unsigned Int
+elif “” int, then int</p>
+<ul>
+<li>Example of a conversion by accident:</li>
+</ul>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+main(){
+      int i;
+      unsigned int stop_val;
+
+      stop_val = 0;
+      i = -10;
+
+      while(i &lt;= stop_val){
+              printf(&quot;%d\n&quot;, i);
+              i = i + 1;
+      }
+      exit(EXIT_SUCCESS);
+}
+</code></pre>
+<p>There is further support for this method of encoding characters. Strings, which we have already seen, are implemented as arrays of char, even though they look like this:</p>
+<pre><code>&quot;a string&quot;
+</code></pre>
+<p>To get strings whose type is wchar_t, simply prefix a string with the letter L. For example:</p>
+<pre><code>L&quot;a string&quot;
+</code></pre>
+<p>In the two examples, it is very important to understand the differences. Strings are implemented as arrays and although it might look odd, it is entirely permissible to use array indexing on them:</p>
+<pre><code>&quot;a string&quot;[4]
+L&quot;a string&quot;[4]
+</code></pre>
+<ul>
+<li>Casts - Force a value to perform a conversion into the type between ()</li>
+</ul>
+<pre><code>pcnt_diff = 100/(float)curr_val;
+</code></pre>
+<pre><code>Declaration     Cast            Type
+---------------------------------------
+int x;          (int)           int
+float f;        (float)         float
+char x[30];     (char [30])     array of char
+int *ip;        (int *)         pointer to int
+int (*f)();     (int (*)())     pointer to function returning int
+</code></pre>
+<ul>
+<li>The bitwise operators</li>
+</ul>
+<pre><code>Operator	Effect	            Conversions
+&amp;	        bitwise AND	        usual arithmetic conversions
+|	        bitwise OR	        usual arithmetic conversions
+^	        Bitwise XOR	        usual arithmetic conversions
+&lt;&lt;	        left shift	        integral promotions
+&gt;&gt;	        right shift	        integral promotions
+~	        one's complement	integral promotions
+</code></pre>
+<p>Now something different; one of those little tricks that C programmers find helps to write better programs. If for any reason you want to form a value that has 1s in all but its least significant so-many bits, which are to have some other pattern in them, you don’t have to know the word length of the machine. For example, to set the low order bits of an int to 0x0f0 and all the other bits to 1, this is the way to do it:</p>
+<p>int some_variable;
+some_variable = ~0xf0f;</p>
+<ul>
+<li>Asignations</li>
+</ul>
+<pre><code>*=	/=	%=
++=	-=	
+&amp;=	|=	^=
+&gt;&gt;=	&lt;&lt;=	
+</code></pre>
+<ul>
+<li>Add/Substract</li>
+</ul>
+<pre><code>C programmers never add or subtract one with statements like this
+
+x += 1;
+they invariably use one of
+
+x++; /* or */ ++x;
+</code></pre>
+<ul>
+<li>Precedence and grouping</li>
+</ul>
+<pre><code>Operator                                    Direction       Notes
+() [] -&gt; .                                  left to right   1
+! ~ ++ -- - + (cast) * &amp; sizeof             right to left   all unary
+* / %                                       left to right   binary
++ -                                         left to right   binary
+&lt;&lt; &gt;&gt;                                       left to right   binary
+&lt; &lt;= &gt; &gt;=                                   left to right   binary
+== !=                                       left to right   binary
+&amp;                                           left to right   binary
+^                                           left to right   binary
+|                                           left to right   binary
+&amp;&amp;                                          left to right   binary
+||                                          left to right   binary
+?:                                          right to left   2
+= += and all combined assignment            right to left   binary
+,                                           left to right   binary
+</code></pre>
+<ul>
+<li>Parentheses
+C allows you to override the normal effects of precedence and associativity by the use of parentheses as the examples have illustrated. In Old C, the parentheses had no further meaning, and in particular did not guarantee anything about the order of evaluation in expressions like these:</li>
+</ul>
+<p>int a, b, c;
+a+b+c;
+(a+b)+c;
+a+(b+c);</p>
+<ul>
+<li>Side Effects
+To repeat and expand the warning given for the increment operators: it is unsafe to use the same variable more than once in an expression if evaluating the expression changes the variable and the new value could affect the result of the expression. This is because the change(s) may be ‘saved up’ and only applied at the end of the statement. So f = f+1; is safe even though f appears twice in a value-changing expression, f++; is also safe, but f = f++; is unsafe.</li>
+</ul>
+<p>The problem can be caused by using an assignment, use of the increment or decrement operators, or by calling a function that changes the value of an external variable that is also used in the expression. These are generally known as ‘side effects’. C makes almost no promise that side effects will occur in a predictable order within a single expression. (The discussion of ‘sequence points’ in Chapter 8 will be of interest if you care about this.)</p>
+<ul>
+<li>Concatenate 2 integers</li>
+</ul>
+<pre><code>unsigned concatenate(unsigned x, unsigned y) {
+    unsigned pow = 10;
+    while(y &gt;= pow)
+        pow *= 10;
+    return x * pow + y;        
+}
+</code></pre>
+<h1><a class="header" href="#rust" id="rust">Rust</a></h1>
+<h2><a class="header" href="#fedora-perks" id="fedora-perks">Fedora Perks</a></h2>
+<ul>
+<li>DNF</li>
+</ul>
+<pre><code>sudo dnf install rust rust-doc.x86_64 rust-std-static.x86_64 rust-debugger-common.noarch rust-analysis.x86_64 rust-packaging.x86_64 --best --allowerasing -y
+</code></pre>
+<ul>
+<li>Nvim</li>
+</ul>
+<pre><code>call plug#begin('~/.vim/plugged')
+&quot; Rust
+Plug 'rust-lang/rust'
+Plug 'rust-lang/rust.vim'
+call plug#end()
+</code></pre>
+<h2><a class="header" href="#lang" id="lang">Lang</a></h2>
+<ul>
+<li>Immutable, this next program will not compile</li>
+</ul>
+<pre><code>let var = &quot;lol&quot;;
+var = &quot;chorizo&quot;;
+</code></pre>
+<ul>
+<li>If you want a mutable var just:</li>
+</ul>
+<pre><code>let mut var = 1;
+var = var + 1;
+var = var + 15;
+</code></pre>
+<ul>
+<li>First Functions</li>
+</ul>
+<pre><code>fn main() {
+    println!(&quot;Hello World&quot;);
+}
+</code></pre>
+<pre><code>fn main() {
+    let a = 1;
+    let b = 2;
+    println!(&quot;{} + {} is {}&quot;, a, b, a+b);
+}
+</code></pre>
+<ul>
+<li>Types</li>
+</ul>
+<pre><code># Bools
+
+let x = true;
+let x: bool = true;
+let y = false &amp;&amp; true; #False
+
+
+# Chars
+## Not 8-bit like C, but unicode scalars which means that support unicode ootb
+
+let c: char = &quot;A&quot;;
+let d: char = &quot;&quot;;
+
+
+# Integers (like C)
+
+let a: i8 = -15;
+let b: u8 = 250;
+let c: i16 = -356;
+let d: u16 = 1029;
+let f: i32 = -31337;
+let g: u32 = 42949672;
+let h: i64 = -4294967295;
+let i: u64 = 18446744073709551615;
+let j: isize = -1;  # Signed 
+let k: usize = 1;   # Unsigned
+
+
+# Floating
+
+let single: f32 = 1.1225 * 10.0;
+let double: f64 = 1.2e-15;
+
+
+# Containers
+
+let array: [i8, 3] = [1, 4, 7];
+let tuple: (i32, char) = (21, 'x');
+println!(&quot;{}, {}&quot;, array[1], tuple.1); # Will print 4, x
+
+
+# Functions Parameters
+
+fn add(a: i32, b: i32) -&gt; i32 {
+    return a + b;
+}
+
+fn add_2(a: i32, b: i64) -&gt; i32 {
+    return a + (b as i32);
+}
+
+fn main() {
+    let a = 1;
+    let b = 3;
+    println!(&quot;{} + {} is {}&quot;, a, b, add(a,b));
+    println!(&quot;{} + {} is {}&quot;, a, b, add_2(a,b));
+}
+</code></pre>
+<ul>
+<li>Crates and Modules</li>
+</ul>
+<pre><code>use std::collections::LinkedList;
+
+fn main() {
+    let mut ll = LinkedList::new();
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_back(4);
+
+    for a in ll {
+        println!(&quot;{}&quot;, a);
+    }
+}
+</code></pre>
+<pre><code>use std::collections::Vec;
+
+fn main() {
+    let mut v = Vec::new();
+    v.push('x');
+    v.push('y');
+    v.push('z');
+
+    for a in v {
+        println!(&quot;{}&quot;, a);
+    }
+}
+</code></pre>
+<ul>
+<li>New module</li>
+</ul>
+<pre><code>use hello::say_hello;
+
+mod hello {
+    pub fn say_hello() {
+        println(&quot;Hello World!&quot;);
+    }
+}
+
+fn main() {
+    say_hello();
+}
+</code></pre>
+<h2><a class="header" href="#resources" id="resources">Resources</a></h2>
+<ul>
+<li>play.rust-lang.org</li>
+</ul>
+<h1><a class="header" href="#k8s-cheatsheet" id="k8s-cheatsheet">K8s cheatsheet</a></h1>
+<ul>
+<li>Get Env vars from a deployment via jsonpath</li>
+</ul>
+<pre><code>kubectl get deployment.apps virt-operator -n kubevirt -o jsonpath='{.spec.template.spec.containers[0].env[?(@.name==&quot;KUBEVIRT_VERSION&quot;)].value}
+</code></pre>
+<ul>
+<li>Get Env vars from a deployment via template</li>
+</ul>
+<pre><code>kubectl get  deployment.apps virt-operator -n kubevirt -o template  --template='{{range .spec.template.spec.containers}}{{.image}}{{end}} '|  awk -F: '{print $NF}'
+</code></pre>
+<ul>
+<li>Useful for ^^ https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba</li>
+</ul>
+<h1><a class="header" href="#ocp4-cheatsheet" id="ocp4-cheatsheet">OCP4 Cheatsheet</a></h1>
+<ul>
+<li>Untaint master in order to let the OCP installer continue with pod deployment</li>
+</ul>
+<pre><code>oc adm taint nodes -l node-role.kubernetes.io/master node-role.kubernetes.io/master:NoSchedule-
+</code></pre>
+<ul>
+<li>BMO logs</li>
+</ul>
+<pre><code>kubectl logs -n metal3 pod/cluster-api-provider-baremetal-controller-manager-0 -c manager -f
+</code></pre>
+<ul>
+<li>List ironic nodes</li>
+</ul>
+<pre><code>export OS_TOKEN=fake-token
+export OS_URL=http://localhost:6385/
+openstack baremetal node list
+
+</code></pre>
+<ul>
+<li>Create a new node on KVM for Minikube</li>
+</ul>
+<pre><code>go run $GOPATH/src/github.com/metal3-io/baremetal-operator/cmd/make-bm-worker/main.go -address ipmi://192.168.111.1:6232 -password password -user admin -boot-mac 00:6c:f2:66:00:fc worker-1 | kubectl create -n metal3 -f -
+</code></pre>
+<ul>
+<li>Patch SC to be the default one</li>
+</ul>
+<pre><code>kubectl patch storageclass mycluster-ceph-rbd -p '{&quot;metadata&quot;: {&quot;annotations&quot;:{&quot;storageclass.kubernetes.io/is-default-class&quot;:&quot;true&quot;}}}'
+</code></pre>
+<ul>
+<li>Clean pods in state X</li>
+</ul>
+<pre><code>kubectl get po --all-namespaces --field-selector 'status.phase!=Running' -o json | kubectl delete -f -
+</code></pre>
+<ul>
+<li>Get JSONPATH label</li>
+</ul>
+<pre><code>oc --config ocp/auth/kubeconfig get machines -n openshift-machine-api --no-headers -o jsonpath=&quot;{['items'][0]['metadata']['labels']['machine\.openshift\.io/cluster-api-cluster']}&quot;
+</code></pre>
+<ul>
+<li>Install a concrete version of OCP4 update</li>
+</ul>
+<pre><code>OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE=registry.svc.ci.openshift.org/ocp/release:4.2.0-0.nightly-2019-08-19-113631
+</code></pre>
+<ul>
+<li>Change SDN on installation time:
+<ul>
+<li>https://docs.openshift.com/container-platform/4.1/installing/installing_aws/installing-aws-network-customizations.html#network-customization-config-yaml_installing-aws-network-customizations</li>
+</ul>
+</li>
+</ul>
+<h1><a class="header" href="#virsh-cheatsheet" id="virsh-cheatsheet">virsh Cheatsheet</a></h1>
+<ul>
+<li>List ips assigned on a network</li>
+</ul>
+<pre><code>virsh net-dhcp-leases baremetal
+</code></pre>
+<ul>
+<li>List Networks</li>
+</ul>
+<pre><code>virsh net-list
+</code></pre>
+<ul>
+<li>List VMs</li>
+</ul>
+<pre><code>virsh list
+</code></pre>
+<h1><a class="header" href="#gpg-cheatsheet" id="gpg-cheatsheet">GPG Cheatsheet</a></h1>
+<ul>
+<li>List keys</li>
+</ul>
+<pre><code>gpg --list-keys --keyid-format LONG
+</code></pre>
+<ul>
+<li>Export Priv Key to file</li>
+</ul>
+<pre><code>gpg --export-secret-keys BA202938CB1C0C1E251F966ADE30627E53AC3969 &gt; XXXXXX_priv.asc
+</code></pre>
+<ul>
+<li>Decrypt gpg encrypted file</li>
+</ul>
+<pre><code>gpg -d ./XXXXXXX.gpg
+</code></pre>
+<ul>
+<li>Encrypt gpg encrypted file</li>
+</ul>
+<pre><code>gpg -c virsh.md
+</code></pre>
+<ul>
+<li>Export public Key</li>
+</ul>
+<pre><code>gpg --export --armor --output jparrill_redhat.asc jparrill@redhat.com
+</code></pre>
+<ul>
+<li>Generate Key</li>
+</ul>
+<pre><code>gpg --full-gen-key
+</code></pre>
+<ul>
+<li>Save all old things:</li>
+</ul>
+<pre><code>zip -er old_gpg.zip old_gpg
+</code></pre>
+<ul>
+<li>Export GPG from one PC to other: https://makandracards.com/makandra/37763-gpg-extract-private-key-and-import-on-different-machine</li>
+</ul>
+<pre><code>Identify your private key by running gpg --list-secret-keys. You need the ID of your private key (second column)
+
+Run this command to export your key: gpg --export-secret-keys $ID &gt; my-private-key.asc
+
+Copy the key to the other machine (scp is your friend)
+
+To import the key, run gpg --import my-private-key.asc
+
+If the key already existed on the second machine, the import will fail saying 'Key already known'. You will have to delete both the private and public key first (gpg --delete-keys and gpg --delete-secret-keys)
+</code></pre>
+<ul>
+<li>Save all old things:</li>
+</ul>
+<pre><code>zip -er old_gpg.zip old_gpg
+</code></pre>
+<ul>
+<li>Generate full Key</li>
+</ul>
+<pre><code>gpg --full-gen-key
+</code></pre>
+<ul>
+<li>Export Public Key from ID</li>
+</ul>
+<pre><code>gpg --export --armor --output jparrill_redhat.asc jparrill@redhat.com
+</code></pre>
+<ul>
+<li>List Keys</li>
+</ul>
+<pre><code>gpg --list-secret-keys --keyid-format LONG
+</code></pre>
+<ul>
+<li>Export Secret from ID</li>
+</ul>
+<pre><code>gpg --export-secret-keys BA202938CB1C0C1E251F966ADE30627E53AC3969 &gt; jparrill_redhat_priv.asc
+</code></pre>
+<ul>
+<li>Configure Git to sign commits</li>
+</ul>
+<pre><code># You could check the signing key listing the keys with long format
+git config --global user.signingkey 9D253FF3D56812CA
+git config --global commit.gpgsign true
+git config --global gpg.program gpg
+</code></pre>
+<h1><a class="header" href="#pass---password-manager-unix" id="pass---password-manager-unix">pass - Password Manager Unix</a></h1>
+<ul>
+<li>References: https://git.zx2c4.com/password-store/about/</li>
+</ul>
+<h2><a class="header" href="#quickstart" id="quickstart">Quickstart</a></h2>
+<pre><code>gpg --list-keys (get the ID)
+</code></pre>
+<pre><code>pub   rsa4096/DE30627E53AC3969 2019-07-30 [SC]
+      BA202938CB1C0C1E251F966ADE30627E53AC3969       &lt;----- THIS ONE
+uid                 [ultimate] Juan Manuel Parrilla Madrid (Red Hat Key for daily basis) &lt;jparrill@redhat.com&gt;
+sub   rsa4096/7A3E889C6FE921D0 2019-07-30 [E]
+</code></pre>
+<p>Now create a new storage for it</p>
+<pre><code>pass init BA202938CB1C0C1E251F966ADE30627E53AC3969
+pass insert RedHat/kerberos
+</code></pre>
+<h1><a class="header" href="#git" id="git">Git</a></h1>
+<ul>
+<li>Configure Git to sign commits</li>
+</ul>
+<pre><code># You could check the signing key listing the keys with long format
+git config --global user.signingkey 9D253FF3D56812CA
+git config --global commit.gpgsign true
+git config --global gpg.program gpg
+</code></pre>
+<h1><a class="header" href="#vpn" id="vpn">VPN</a></h1>
+<h1><a class="header" href="#iptables-tips" id="iptables-tips">Iptables tips</a></h1>
+<ul>
+<li>Check rules that are bothering/blocking connections that you need</li>
+</ul>
+<pre><code>sudo iptables -vL | egrep 'REJECT|DROP'
+</code></pre>
+<pre><code>[jparrill@nostromo ~]$ sudo iptables -vL | egrep 'REJECT|DROP'
+    4   160 DROP       all  --  any    any     anywhere             anywhere             ctstate INVALID
+ 271K   50M REJECT     all  --  any    any     anywhere             anywhere             reject-with icmp-host-prohibited
+    0     0 DROP       all  --  any    any     anywhere             anywhere             ctstate INVALID
+    0     0 REJECT     all  --  any    any     anywhere             anywhere             reject-with icmp-host-prohibited
+    0     0 REJECT     all  --  any    covenant  anywhere             anywhere             reject-with icmp-port-unreachable
+   13   768 REJECT     all  --  any    virbr0  anywhere             anywhere             reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  covenant any     anywhere             anywhere             reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  virbr0 any     anywhere             anywhere             reject-with icmp-port-unreachable
+
+</code></pre>
+<h1><a class="header" href="#git-cheatsheet" id="git-cheatsheet">Git Cheatsheet</a></h1>
+<h2><a class="header" href="#force-sync-a-fork" id="force-sync-a-fork">Force Sync a fork</a></h2>
+<pre><code>git remote add upstream https://github.com/some_user/some_repo
+git fetch upstream
+git checkout master
+git reset --hard upstream/master  
+git push origin master --force
+</code></pre>
+<p>REF: https://gist.github.com/ravibhure/a7e0918ff4937c9ea1c456698dcd58aa</p>
+<h2><a class="header" href="#stash-changes-to-apply-in-other-branch" id="stash-changes-to-apply-in-other-branch">Stash changes to apply in other branch</a></h2>
+<pre><code>git stash
+git checkout -b xxx
+git stash pop
+</code></pre>
+<p>REF: https://stackoverflow.com/questions/6925099/git-stash-changes-apply-to-new-branch</p>
+<h2><a class="header" href="#get-git-changes-from-origin-without-push" id="get-git-changes-from-origin-without-push">Get git changes from origin without push</a></h2>
+<pre><code>git reset --hard origin/master
+git pull --rebase origin master
+git status
+</code></pre>
+<h1><a class="header" href="#homelab" id="homelab">HomeLab</a></h1>
+<pre><code>iptables -t nat -A POSTROUTING -s 192.168.122.0/24 -o enp12s0 -j MASQUERADE
+</code></pre>
+<pre><code>firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.126.0/24 masquerade'
+firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.124.0/24 masquerade'
+firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=192.168.122.0/24 masquerade'
+</code></pre>
+<ul>
+<li>sudo dnf install network-scripts -y</li>
+</ul>
+<pre><code>[root@nostromo network-scripts]# cat ifcfg-br1
+DEVICE=br1
+NAME=br1
+TYPE=Bridge
+ONBOOT=yes
+BOOTPROTO=static
+NM_CONTROLLED=no
+PROXY_METHOD=none
+BROWSER_ONLY=no
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+IPADDR=192.168.1.101
+PREFIX=24
+GATEWAY=192.168.1.1
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+IPV6_PRIVACY=no
+</code></pre>
+<pre><code>[root@nostromo network-scripts]# cat ifcfg-enp12s0
+TYPE=Ethernet
+BRIDGE=br1
+ONBOOT=yes
+BOOTPROTO=none
+NM_CONTROLLED=no
+MTU=1500
+NAME=enp12s0
+DEVICE=enp12s0
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
