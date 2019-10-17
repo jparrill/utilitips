@@ -9,6 +9,7 @@ title = "Utilitips"
 build-dir = "public"
 
 [output.html]
+theme = "Coal"
 default-theme = "Coal"
+preferred-dark-theme = "Coal"
 curly-quotes = true
-

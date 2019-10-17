@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Ansible - Utilitips</title>
+        <title>Utilitips - Utilitips</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="Languages/ansible.html">Ansible</a></li><li class="affix"><a href="Languages/shell.html">Shell</a></li><li class="affix"><a href="Languages/c.html">C</a></li><li class="affix"><a href="Languages/rust.html">Rust</a></li><li class="affix"><a href="Containers/k8s.html">Kubernetes</a></li><li class="affix"><a href="Containers/ocp.html">Openshift</a></li><li class="affix"><a href="Virtualization/virsh.html">Virsh</a></li><li class="affix"><a href="Security/gpg.html">GPG</a></li><li class="affix"><a href="Security/vpn.html">VPN</a></li><li class="affix"><a href="Security/iptables.html">Iptables</a></li><li class="affix"><a href="Others/git.html">Git</a></li><li class="affix"><a href="Others/homelab.html">HomeLab</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="http:/utilitis.kerbeross.html">Utilitips</a></li><li><a href="Languages/index.html"><strong aria-hidden="true">1.</strong> Languages</a></li><li><ol class="section"><li><a href="Languages/ansible.html"><strong aria-hidden="true">1.1.</strong> Ansible</a></li><li><a href="Languages/shell.html"><strong aria-hidden="true">1.2.</strong> Shell</a></li><li><a href="Languages/c.html"><strong aria-hidden="true">1.3.</strong> C</a></li><li><a href="Languages/rust.html"><strong aria-hidden="true">1.4.</strong> Rust</a></li></ol></li><li><a href="Containers/index.html"><strong aria-hidden="true">2.</strong> Containers</a></li><li><ol class="section"><li><a href="Containers/k8s.html"><strong aria-hidden="true">2.1.</strong> Kubernetes</a></li><li><a href="Containers/ocp.html"><strong aria-hidden="true">2.2.</strong> Openshift</a></li></ol></li><li><a href="Virtualization/index.html"><strong aria-hidden="true">3.</strong> Virtualization</a></li><li><ol class="section"><li><a href="Virtualization/virsh.html"><strong aria-hidden="true">3.1.</strong> Virsh</a></li></ol></li><li><a href="Security/index.html"><strong aria-hidden="true">4.</strong> Security</a></li><li><ol class="section"><li><a href="Security/gpg.html"><strong aria-hidden="true">4.1.</strong> GPG</a></li><li><a href="Security/vpn.html"><strong aria-hidden="true">4.2.</strong> VPN</a></li><li><a href="Security/iptables.html"><strong aria-hidden="true">4.3.</strong> Iptables</a></li></ol></li><li><a href="Others/index.html"><strong aria-hidden="true">5.</strong> Others</a></li><li><ol class="section"><li><a href="Others/git.html"><strong aria-hidden="true">5.1.</strong> Git</a></li><li><a href="Others/homelab.html"><strong aria-hidden="true">5.2.</strong> HomeLab</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,110 +145,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#ansible-cheatsheet" id="ansible-cheatsheet">Ansible Cheatsheet</a></h1>
-<ul>
-<li>Cgroups and callbacks</li>
-</ul>
-<pre><code>sudo cgcreate -a user:user -t user:user &gt; -g cpuacct,memory,pids:ansible_profile
-
-# on ansible.cfg
-callback_whitelist=cgroup_perf_recap[callback_cgroup_perf_recap]control_group=ansible_profile
-
-cgexec -g cpuacct,memory,pids:ansible_profile &gt; ansible-playbook deploy_webservers.yml
-</code></pre>
-<ul>
-<li>Listen on handlers</li>
-</ul>
-<pre><code># Listening to the &quot;My handlers&quot; event
-- name: Listening to a notification
-  debug:
-    msg: First handler was notified
-  listen: My handlers
-</code></pre>
-<ul>
-<li>Add callback to ansible.cfg</li>
-</ul>
-<pre><code>callback_whitelist=timer, profile_tasks
-</code></pre>
-<ul>
-<li>Concatenate 2 Arrays:</li>
-</ul>
-<pre><code>&quot;{{ apache_base_packages | union(apache_optional_packages) }}&quot;
-</code></pre>
-<ul>
-<li>Avoid to fail by a lookup error</li>
-</ul>
-<pre><code>{{ lookup('file', 'my.file', errors='warn') | default(&quot;Default file content&quot;) }}
-</code></pre>
-<ul>
-<li>Execute commands from Lookup on control node</li>
-</ul>
-<pre><code>{{ query('pipe', 'ls files') }}
-</code></pre>
-<ul>
-<li>from yaml</li>
-</ul>
-<pre><code>my_yaml: &quot;{{ lookup('file', '/path/to/my.yaml') | from_yaml }}&quot;
-</code></pre>
-<ul>
-<li>Loop over file lines</li>
-</ul>
-<pre><code>- name: Prints the first line of some files
-  debug:
-    msg: &quot;{{ item[0] }}&quot;
-  loop:
-    - &quot;{{ query('lines', 'cat files/my.file') }}&quot;
-</code></pre>
-<ul>
-<li>dig over a host</li>
-</ul>
-<pre><code># It needs python3-dns rpm
-
-- name: Determinte if host's ip address is private
-  debug:
-    msg: &quot;{{ lookup('dig', ansible_facts['hostname'] ) | ipaddr('private') }}&quot;
-
-&quot;{{ lookup('dig', 'example.com', '@4.4.8.8,4.4.4.4) }}&quot;
-
-</code></pre>
-<ul>
-<li>Fail all if 1 steps fails</li>
-</ul>
-<pre><code>max_fail_percentage: 0
-</code></pre>
-<ul>
-<li>Interacting with Tower API</li>
-</ul>
-<pre><code>- name: Delete an existing Ansible Tower Job Template using the uri module
-  uri:
-    url: &quot;https://{{ tower_fqdn }}/api/v2/job_templates/{{ copy_template_name | urlencode }}/&quot;
-    validate_certs: no
-    method: DELETE￼
-    return_content: yes
-    force_basic_auth: yes
-    user: &quot;{{ tower_user }}&quot;
-    password: &quot;{{ tower_password }}&quot;
-    status_code: 204
-</code></pre>
-<ul>
-<li>Sample of SmartHostFilter</li>
-</ul>
-<pre><code>ansible_facts.ansible_distribution:RedHat
-</code></pre>
-<ul>
-<li>Change TLS cert for tower</li>
-</ul>
-<pre><code>semanage fcontext -a -t cert_t &quot;/etc/tower(/.*)?&quot;
-restorecon -FvvR /etc/tower/
-rm /etc/tower/tower.*
-ipa-getcert request -f /etc/tower/tower.cert \&gt; -k /etc/tower/tower.key
-ansible-tower-service restart
-</code></pre>
-<ul>
-<li>Grant role admin on Team</li>
-</ul>
-<pre><code>tower-cli role grant --user 'daniel' \&gt; --target-team 'Developers' --type 'admin'
-</code></pre>
+                        <h1><a class="header" href="#utilitips" id="utilitips">Utilitips</a></h1>
 
                     </main>
 
