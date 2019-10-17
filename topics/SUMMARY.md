@@ -1,6 +1,6 @@
 # Summary
 
-[Utilitips](http://utilitis.kerbeross.dev)
+[Utilitips](README.md)
 
 - [Languages](Languages/README.md)
     - [Ansible](Languages/ansible.md)
