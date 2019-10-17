@@ -1,4 +1,4 @@
-.PHONY: build release serve 
+VERSION ?= $(shell bash -c 'find -type f -exec md5sum {} \; | md5sum | cut -f1 -d\ ')
 
 serve:
 	mdbook serve
@@ -7,8 +7,10 @@ build:
 	mdbook build
 
 release: build
-	VERSION="$(find -type f -exec md5sum {} \; | md5sum | cut -f1 -d\ )"
+	echo ${VERSION}
 	git add -A
 	git commit -a -m "New Book version published: ${VERSION}"
 	git push origin master
 	git push gitlab master
+
+.PHONY: build release serve 
