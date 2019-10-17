@@ -29,3 +29,10 @@ A repository to store utilities and tips of multiple topics
 
 - [Git](topics/Others/git.md)
 - [HomeLab](topics/Others/homelab.md)
+
+
+## Make options
+
+- `make serve`: Local serve of mdbook
+- `make build`: Generates the static content for Pages 
+- `make release`: Creates a new release and pushes them to Github and Gitlab
