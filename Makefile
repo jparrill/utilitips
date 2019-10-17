@@ -1,5 +1,7 @@
 VERSION ?= $(shell bash -c 'find -type f -exec md5sum {} \; | md5sum | cut -f1 -d\ ')
 
+default: release
+
 serve:
 	mdbook serve
 
