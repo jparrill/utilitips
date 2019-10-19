@@ -8,7 +8,7 @@ serve:
 build:
 	zola build
 
-release: build
+release:
 	echo ${VERSION}
 	git add -A
 	git commit -a -m "New Book version published: ${VERSION}"
