@@ -3,10 +3,10 @@ VERSION ?= $(shell bash -c 'find -type f -exec md5sum {} \; | md5sum | cut -f1 -
 default: release
 
 serve:
-	mdbook serve
+	zola serve
 
 build:
-	mdbook build
+	zola build
 
 release: build
 	echo ${VERSION}
