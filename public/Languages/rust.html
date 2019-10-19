@@ -293,6 +293,63 @@ fn main() {
     say_hello();
 }
 </code></pre>
+<h3><a class="header" href="#concatenate-strings" id="concatenate-strings">Concatenate Strings</a></h3>
+<p>When you concatenate strings, you need to allocate memory to store the result. The easiest to start with is String and &amp;str:</p>
+<pre><code>fn main() {
+    let mut owned_string: String = &quot;hello &quot;.to_owned();
+    let borrowed_string: &amp;str = &quot;world&quot;;
+
+    owned_string.push_str(borrowed_string);
+    println!(&quot;{}&quot;, owned_string);
+}
+</code></pre>
+<p>Here, we have an owned string that we can mutate. This is efficient as it potentially allows us to reuse the memory allocation. There’s a similar case for String and String, as &amp;String can be dereferenced as &amp;str.</p>
+<pre><code>fn main() {
+    let mut owned_string: String = &quot;hello &quot;.to_owned();
+    let another_owned_string: String = &quot;world&quot;.to_owned();
+
+    owned_string.push_str(&amp;another_owned_string);
+    println!(&quot;{}&quot;, owned_string);
+}
+</code></pre>
+<p>After this, another_owned_string is untouched (note no mut qualifier). There’s another variant that consumes the String but doesn’t require it to be mutable. This is an implementation of the Add trait that takes a String as the left-hand side and a &amp;str as the right-hand side:</p>
+<pre><code>fn main() {
+    let owned_string: String = &quot;hello &quot;.to_owned();
+    let borrowed_string: &amp;str = &quot;world&quot;;
+
+    let new_owned_string = owned_string + borrowed_string;
+    println!(&quot;{}&quot;, new_owned_string);
+}
+</code></pre>
+<p>Note that owned_string is no longer accessible after the call to +.</p>
+<p>What if we wanted to produce a new string, leaving both untouched? The simplest way is to use format!:</p>
+<pre><code>fn main() {
+    let borrowed_string: &amp;str = &quot;hello &quot;;
+    let another_borrowed_string: &amp;str = &quot;world&quot;;
+
+    let together = format!(&quot;{}{}&quot;, borrowed_string, another_borrowed_string);
+    println!(&quot;{}&quot;, together);
+}
+</code></pre>
+<p>Note that both input variables are immutable, so we know that they aren’t touched. If we wanted to do the same thing for any combination of String, we can use the fact that String also can be formatted:</p>
+<pre><code>fn main() {
+    let owned_string: String = &quot;hello &quot;.to_owned();
+    let another_owned_string: String = &quot;world&quot;.to_owned();
+
+    let together = format!(&quot;{}{}&quot;, owned_string, another_owned_string);
+    println!(&quot;{}&quot;, together);
+}
+</code></pre>
+<p>You don’t have to use format! though. You can clone one string and append the other string to the new string:</p>
+<pre><code>fn main() {
+    let owned_string: String = &quot;hello &quot;.to_owned();
+    let borrowed_string: &amp;str = &quot;world&quot;;
+
+    let together = owned_string.clone() + borrowed_string;
+    println!(&quot;{}&quot;, together);
+}
+</code></pre>
+<p>Note - all of the type specification I did is redundant - the compiler can infer all the types in play here. I added them simply to be clear to people new to Rust, as I expect this question to be popular with that group!</p>
 <h2><a class="header" href="#resources" id="resources">Resources</a></h2>
 <ul>
 <li>play.rust-lang.org</li>
