@@ -1,7 +1,7 @@
 +++
 title = "Security"
-sort_by = "none"
-insert_anchor_links = "left"
+sort_by = "weight"
+weight = 40
 +++
 
 Security things that maybe could help you

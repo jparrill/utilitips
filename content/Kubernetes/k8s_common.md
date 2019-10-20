@@ -1,5 +1,6 @@
 +++
 title = "Kubernetes Common"
+weight = 21
 +++
 
 - Get Env vars from a deployment via jsonpath

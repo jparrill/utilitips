@@ -1,5 +1,7 @@
 +++
 title = "Shell"
+weight = 6
+insert_anchor_links = "left"
 +++
 
 ## Search and replace

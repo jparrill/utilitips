@@ -1,5 +1,7 @@
 +++
 title = "Git"
+weight = 61
+insert_anchor_links = "left"
 +++
 
 ## Force Sync a fork

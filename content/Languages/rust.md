@@ -1,5 +1,7 @@
 +++
 title = "Rust"
+weight = 3
+insert_anchor_links = "left"
 +++
 
 ## Fedora Perks

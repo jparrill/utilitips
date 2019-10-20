@@ -1,5 +1,7 @@
 +++
 title = "Openshift Common"
+weight = 31
+insert_anchor_links = "left"
 +++
 
 - Untaint master in order to let the OCP installer continue with pod deployment

@@ -1,5 +1,7 @@
 +++
 title = "GPG"
+weight = 41
+insert_anchor_links = "left"
 +++
 
 - List keys

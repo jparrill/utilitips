@@ -1,7 +1,7 @@
 +++
 title = "Virtualization"
-sort_by = "none"
-insert_anchor_links = "left"
+sort_by = "weight"
+weight = 50
 +++
 
 Virtualization things good to have in mind...

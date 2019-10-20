@@ -1,5 +1,7 @@
 +++
 title = "Homelab"
+weight = 62
+insert_anchor_links = "left"
 +++
 
 ```

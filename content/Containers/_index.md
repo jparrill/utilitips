@@ -1,7 +1,7 @@
 +++
 title = "Containers"
-sort_by = "none"
-insert_anchor_links = "left"
+sort_by = "weight"
+weight = 10
 +++
 
 All the useful information about Containers that I usually forget...
