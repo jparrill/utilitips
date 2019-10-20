@@ -1,5 +1,5 @@
 +++
-title = "OCP4 Cheatsheet"
+title = "OCP4"
 weight = 2
 +++
 

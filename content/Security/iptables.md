@@ -1,5 +1,5 @@
 +++
-title = "Iptables tips"
+title = "Iptables"
 weight = 2
 +++
 

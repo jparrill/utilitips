@@ -1,5 +1,5 @@
 +++
-title = "Ansible Cheatsheet"
+title = "Ansible"
 weight = 3
 +++
 

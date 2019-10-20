@@ -1,5 +1,5 @@
 +++
-title = "C Cheatsheet and things to remember"
+title = "C"
 weight = 2
 +++
 
@@ -13,7 +13,7 @@ EXIT_SUCCESS and EXIT_FAILURE for main function, exit for others
 ```
 
 - Get an int lenght
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -58,7 +58,7 @@ do         if       static     while
 A computation involving unsigned operands can never overflow, because a result that cannot be represented by the resulting unsigned integer type is reduced modulo the number that is one greater than the largest value that can be represented by the resulting type.
 
 - Bonus: Arithmetic Conversion Semi-WTF
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -77,7 +77,7 @@ int main(void)
 
 More conversions:
 
-```
+```c
 unsigned int u;
 int s = 1;
 u = s;
@@ -85,7 +85,7 @@ u = s;
 
 But if the integer is negative the interpreter will just copy the bits, so you can do something like this:
 
-```
+```c
 #include <stdio.h>
  
 int main() {
@@ -112,7 +112,7 @@ elif "" Unsigned Int, then Unsigned Int
 elif "" int, then int
 
 - Example of a conversion by accident:
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 main(){
@@ -132,23 +132,23 @@ main(){
 
 There is further support for this method of encoding characters. Strings, which we have already seen, are implemented as arrays of char, even though they look like this:
 
-```
+```c
 "a string"
 ```
 To get strings whose type is wchar_t, simply prefix a string with the letter L. For example:
 
-```
+```c
 L"a string"
 ```
 In the two examples, it is very important to understand the differences. Strings are implemented as arrays and although it might look odd, it is entirely permissible to use array indexing on them:
 
-```
+```c
 "a string"[4]
 L"a string"[4]
 ```
 
 - Casts - Force a value to perform a conversion into the type between ()
-```
+```c
 pcnt_diff = 100/(float)curr_val;
 ```
 
@@ -234,7 +234,7 @@ The problem can be caused by using an assignment, use of the increment or decrem
 
 
 - Concatenate 2 integers
-```
+```c
 unsigned concatenate(unsigned x, unsigned y) {
     unsigned pow = 10;
     while(y >= pow)

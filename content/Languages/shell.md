@@ -1,5 +1,5 @@
 +++
-title = "Shell Cheatsheet"
+title = "Shell"
 weight = 4
 +++
 

@@ -1,5 +1,5 @@
 +++
-title = "GPG Cheatsheet"
+title = "GPG"
 weight = 1
 +++
 

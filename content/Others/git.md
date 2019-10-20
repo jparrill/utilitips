@@ -1,5 +1,5 @@
 +++
-title = "Git Cheatsheet"
+title = "Git"
 weight = 1
 +++
 

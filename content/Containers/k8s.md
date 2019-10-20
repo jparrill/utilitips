@@ -1,5 +1,5 @@
 +++
-title = "K8s Cheatsheet"
+title = "K8s"
 weight = 2
 +++
 

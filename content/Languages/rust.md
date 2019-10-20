@@ -7,12 +7,12 @@ weight = 1
 
 - DNF
 
-```
+```bash
 sudo dnf install rust rust-doc.x86_64 rust-std-static.x86_64 rust-debugger-common.noarch rust-analysis.x86_64 rust-packaging.x86_64 --best --allowerasing -y
 ```
 
 - Nvim
-```
+```vim
 call plug#begin('~/.vim/plugged')
 " Rust
 Plug 'rust-lang/rust'
@@ -24,27 +24,27 @@ call plug#end()
 
 - Immutable, this next program will not compile
 
-```
+```rust
 let var = "lol";
 var = "chorizo";
 ```
 
 - If you want a mutable var just:
 
-```
+```rust
 let mut var = 1;
 var = var + 1;
 var = var + 15;
 ```
 
 - First Functions
-```
+```rust
 fn main() {
     println!("Hello World");
 }
 ```
 
-```
+```rust
 fn main() {
     let a = 1;
     let b = 2;
@@ -54,22 +54,21 @@ fn main() {
 
 - Types
 
-```
-# Bools
+```rust
+// Bools
 
 let x = true;
 let x: bool = true;
 let y = false && true; #False
 
-
-# Chars
-## Not 8-bit like C, but unicode scalars which means that support unicode ootb
+// Chars
+// Not 8-bit like C, but unicode scalars which means that support unicode ootb
 
 let c: char = "A";
 let d: char = "";
 
 
-# Integers (like C)
+// Integers (like C)
 
 let a: i8 = -15;
 let b: u8 = 250;
@@ -83,20 +82,20 @@ let j: isize = -1;  # Signed
 let k: usize = 1;   # Unsigned
 
 
-# Floating
+// Floating
 
 let single: f32 = 1.1225 * 10.0;
 let double: f64 = 1.2e-15;
 
 
-# Containers
+//Containers
 
 let array: [i8, 3] = [1, 4, 7];
 let tuple: (i32, char) = (21, 'x');
 println!("{}, {}", array[1], tuple.1); # Will print 4, x
 
 
-# Functions Parameters
+// Functions Parameters
 
 fn add(a: i32, b: i32) -> i32 {
     return a + b;
@@ -116,7 +115,7 @@ fn main() {
 
 - Crates and Modules
 
-```
+```rust
 use std::collections::LinkedList;
 
 fn main() {
@@ -131,7 +130,7 @@ fn main() {
 }
 ```
 
-```
+```rust
 use std::collections::Vec;
 
 fn main() {
@@ -147,7 +146,7 @@ fn main() {
 ```
 
 - New module
-```
+```rust
 use hello::say_hello;
 
 mod hello {
@@ -165,7 +164,7 @@ fn main() {
 
 When you concatenate strings, you need to allocate memory to store the result. The easiest to start with is String and &str:
 
-```
+```rust
 fn main() {
     let mut owned_string: String = "hello ".to_owned();
     let borrowed_string: &str = "world";
@@ -177,7 +176,7 @@ fn main() {
 
 Here, we have an owned string that we can mutate. This is efficient as it potentially allows us to reuse the memory allocation. There's a similar case for String and String, as &String can be dereferenced as &str.
 
-```
+```rust
 fn main() {
     let mut owned_string: String = "hello ".to_owned();
     let another_owned_string: String = "world".to_owned();
@@ -189,7 +188,7 @@ fn main() {
 
 After this, another_owned_string is untouched (note no mut qualifier). There's another variant that consumes the String but doesn't require it to be mutable. This is an implementation of the Add trait that takes a String as the left-hand side and a &str as the right-hand side:
 
-```
+```rust
 fn main() {
     let owned_string: String = "hello ".to_owned();
     let borrowed_string: &str = "world";
@@ -203,7 +202,7 @@ Note that owned_string is no longer accessible after the call to +.
 
 What if we wanted to produce a new string, leaving both untouched? The simplest way is to use format!:
 
-```
+```rust
 fn main() {
     let borrowed_string: &str = "hello ";
     let another_borrowed_string: &str = "world";
@@ -215,7 +214,7 @@ fn main() {
 
 Note that both input variables are immutable, so we know that they aren't touched. If we wanted to do the same thing for any combination of String, we can use the fact that String also can be formatted:
 
-```
+```rust
 fn main() {
     let owned_string: String = "hello ".to_owned();
     let another_owned_string: String = "world".to_owned();
@@ -227,7 +226,7 @@ fn main() {
 
 You don't have to use format! though. You can clone one string and append the other string to the new string:
 
-```
+```rust
 fn main() {
     let owned_string: String = "hello ".to_owned();
     let borrowed_string: &str = "world";
@@ -242,5 +241,5 @@ Note - all of the type specification I did is redundant - the compiler can infer
 
 ## Resources
 
-- play.rust-lang.org
-- https://cheats.rs
+- [play.rust-lang.org](play.rust-lang.org)
+- [https://cheats.rs](https://cheats.rs)

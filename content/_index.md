@@ -1,8 +1,3 @@
 +++
-title = "Utilitips"
-weight = 1
-sort_by = "weight"
-insert_anchor_links = "left"
+redirect_to = "Entrypoint"
 +++
-
-**You utilities and tips for the real world**

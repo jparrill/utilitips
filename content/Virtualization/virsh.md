@@ -1,5 +1,5 @@
 +++
-title = "virsh Cheatsheet"
+title = "Virsh"
 weight = 1
 +++
 
