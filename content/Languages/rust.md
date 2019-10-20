@@ -1,6 +1,5 @@
 +++
 title = "Rust"
-weight = 1
 +++
 
 ## Fedora Perks

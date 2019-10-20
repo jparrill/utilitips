@@ -1,6 +1,5 @@
 +++
 title = "Virsh"
-weight = 1
 +++
 
 - List ips assigned on a network

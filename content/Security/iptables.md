@@ -1,6 +1,5 @@
 +++
 title = "Iptables"
-weight = 2
 +++
 
 - Check rules that are bothering/blocking connections that you need

@@ -1,6 +1,5 @@
 +++
 title = "K8s"
-weight = 2
 +++
 
 - Get Env vars from a deployment via jsonpath

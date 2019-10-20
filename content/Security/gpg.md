@@ -1,6 +1,5 @@
 +++
 title = "GPG"
-weight = 1
 +++
 
 - List keys

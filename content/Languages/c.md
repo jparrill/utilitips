@@ -1,6 +1,5 @@
 +++
 title = "C"
-weight = 2
 +++
 
 - Finish a C program from non-main function [1.3.10 - The Return Statement](https://publications.gbdirect.co.uk/c_book/chapter1/description_of_example.html)

@@ -1,6 +1,5 @@
 +++
 title = "Shell"
-weight = 4
 +++
 
 ## Search and replace

@@ -1,6 +1,5 @@
 +++
 title = "Git"
-weight = 1
 +++
 
 ## Force Sync a fork

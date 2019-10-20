@@ -1,6 +1,5 @@
 +++
 title = "Ansible"
-weight = 3
 +++
 
 - Cgroups and callbacks

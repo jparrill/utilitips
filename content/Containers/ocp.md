@@ -1,6 +1,5 @@
 +++
 title = "OCP4"
-weight = 2
 +++
 
 - Untaint master in order to let the OCP installer continue with pod deployment
