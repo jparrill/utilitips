@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://utilitips.kerbeross.dev/sitemap.xml
+Sitemap: https://gitlab.com/jparrill/utilitips/sitemap.xml
