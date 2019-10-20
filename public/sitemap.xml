@@ -12,17 +12,22 @@
         </url>
     
         <url>
-            <loc>https://utilitips.kerbeross.dev/Containers/k8s/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://utilitips.kerbeross.dev/Containers/ocp/</loc>
-            
-        </url>
-    
-        <url>
             <loc>https://utilitips.kerbeross.dev/Entrypoint/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://utilitips.kerbeross.dev/Kubernetes/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://utilitips.kerbeross.dev/Kubernetes/k8s-common/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://utilitips.kerbeross.dev/Kubernetes/prow/</loc>
             
         </url>
     
@@ -48,6 +53,16 @@
     
         <url>
             <loc>https://utilitips.kerbeross.dev/Languages/shell/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://utilitips.kerbeross.dev/Openshift/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://utilitips.kerbeross.dev/Openshift/ocp-common/</loc>
             
         </url>
     

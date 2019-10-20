@@ -1,5 +1,5 @@
 +++
-title = "K8s"
+title = "Kubernetes Common"
 +++
 
 - Get Env vars from a deployment via jsonpath

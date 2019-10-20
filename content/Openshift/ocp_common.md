@@ -1,5 +1,5 @@
 +++
-title = "OCP4"
+title = "Openshift Common"
 +++
 
 - Untaint master in order to let the OCP installer continue with pod deployment
