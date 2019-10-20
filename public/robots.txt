@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://gitlab.com/jparrill/utilitips/public/sitemap.xml
+Sitemap: https://jparrill.gitlab.io/utilitips/sitemap.xml

@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Containers/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Containers/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Containers/k8s/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Containers/k8s/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Containers/ocp/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Containers/ocp/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Languages/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Languages/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Languages/ansible/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Languages/ansible/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Languages/c/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Languages/c/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Languages/rust/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Languages/rust/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Languages/shell/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Languages/shell/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Others/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Others/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Others/git/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Others/git/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Others/homelab/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Others/homelab/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Security/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Security/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Security/gpg/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Security/gpg/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Security/iptables/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Security/iptables/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Security/vpn/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Security/vpn/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Virtualization/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Virtualization/</loc>
             
         </url>
     
         <url>
-            <loc>https://gitlab.com/jparrill/utilitips/public/Virtualization/virsh/</loc>
+            <loc>https://jparrill.gitlab.io/utilitips/Virtualization/virsh/</loc>
             
         </url>
     
