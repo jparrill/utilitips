@@ -7,4 +7,4 @@ insert_anchor_links = "left"
 
 All the useful information about Containers that I usually forget...
 
-![img](img/containers.png)
+![img](@/static/images/containers.png)
