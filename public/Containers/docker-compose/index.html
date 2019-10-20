@@ -40,7 +40,7 @@
                                 
                                     <ul>
                                         
-                                            <li >
+                                            <li class="active">
                                                 <a href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Containers&#x2F;docker-compose&#x2F;">
                                                     <strong>1.1.</strong>
                                                     Docker-Compose
@@ -90,7 +90,7 @@
                             </li>
                         
                             
-                            <li class="active">
+                            <li >
                                 
                                 <a href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Languages&#x2F;">
                                     <strong>4.</strong>
@@ -267,10 +267,72 @@
                 
                 <div class="book-content">
                     
-    <h1>Languages</h1>
-    <p>New, old, w/e programming languages that I've been going through, not top info but useful to remember</p>
-<p><img src="https://utilitips.kerbeross.dev/Languages/computer.png" alt="img" title="code" /></p>
+    <h1>Docker-Compose</h1>
+    <ul>
+<li>Spin up a compose file as a daemon</li>
+</ul>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">docker-compose up -d
+</span></pre>
+<ul>
+<li>Raise down a compose set of containers</li>
+</ul>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">docker-compose down
+</span></pre>
+<ul>
+<li>Pull new container image</li>
+</ul>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">docker pull wonderfall/nextcloud:18
+</span></pre>
+<ul>
+<li>Docker Compose sample (Nextcloud Installation</li>
+</ul>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">caddy:
+  image: abiosoft/caddy:latest
+  container_name: Caddy
+  restart: always
+  environment:
+    CADDYPATH: &quot;/etc/caddycerts&quot;
+  links:
+    - nextcloud:nextcloud
+  volumes:
+    - /home/docker/caddy/Caddyfile:/etc/Caddyfile
+    - /home/docker/caddy/caddycerts:/etc/caddycerts
+  ports:
+    - &quot;80:80&quot;
+    - &quot;443:443&quot;
 
+nextcloud:
+  image: wonderfall/nextcloud:latest
+  container_name: nextcloud
+  links:
+    - db_nextcloud:db_nextcloud
+  environment:
+    - UID=1000
+    - GID=1000
+    - UPLOAD_MAX_SIZE=10G
+    - APC_SHM_SIZE=128M
+    - OPCACHE_MEM_SIZE=128
+    - CRON_PERIOD=15m
+  volumes:
+    - /home/docker/nextcloud/data:/data
+    - /home/docker/nextcloud/config:/config
+    - /home/docker/nextcloud/apps:/apps2
+
+db_nextcloud:
+  image: mariadb:10
+  container_name: db_nextcloud
+  volumes:
+    - /home/docker/nextcloud/db:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=Aw3s0m3P4ssw0rd2!#
+    - MYSQL_DATABASE=nextcloud
+    - MYSQL_USER=r00t
+    - MYSQL_PASSWORD=Aw3s0m3P4ssw0rd!#
+</span></pre>
 
                 </div>
             </div>
@@ -278,55 +340,9 @@
             <div class="prev-link">
                 
     
-    
-    
-    
         
         
-            
-        
-    
-        
-        
-            
-        
-    
-        
-        
-            
-        
-    
-        
-        
-            
-        
-    
-        
-        
-            
-        
-    
-        
-        
-            
-                
-                    
-                    <a class="previous" href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Kubernetes&#x2F;prow&#x2F;"><</a>
-                
-                
-                
-            
-        
-    
-        
-        
-            
-        
-    
-        
-        
-            
-        
+        <a class="previous" href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Containers&#x2F;"><</a>
     
 
             </div>
@@ -335,7 +351,75 @@
                 
     
         
-        <a class="next" href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Languages&#x2F;ansible&#x2F;">></a>
+        
+        
+        
+            
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                <a class="next" href="https:&#x2F;&#x2F;utilitips.kerbeross.dev&#x2F;Entrypoint&#x2F;">></a>
+                
+                
+            
+            
+        
+            
+            
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+        
+            
+            
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+                
+            
+                
+            
+        
+            
+            
+            
+                
+            
+        
     
 
             </div>

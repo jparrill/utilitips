@@ -13,7 +13,7 @@ Prow is a Kubernetes based CI/CD system. Jobs can be triggered by various types 
 - `deck` presents a nice view of [recent jobs](https://prow.k8s.io/), [command](https://prow.k8s.io/command-help) and [plugin](https://prow.k8s.io/plugins) help information, the [current status](https://prow.k8s.io/tide) and (history)[https://prow.k8s.io/tide-history] of merge automation, and a [dashboard for PR authors](https://prow.k8s.io/pr).
 - `horologium` triggers periodic jobs when necessary.
 - `sinker` cleans up old jobs and pods.
-- `tide` manages retesting and merging PRs once they meet the configured merge criteria. See [its README](./tide/README.md) for more information.
+- `tide` manages retesting and merging PRs once they meet the configured merge criteria. See its README for more information.
 - `crier` manages the notifications against different providers like slack, github, etc..
 
 Reference: https://raw.githubusercontent.com/kubernetes/test-infra/master/prow/cmd/README.md
