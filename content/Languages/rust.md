@@ -239,7 +239,8 @@ fn main() {
 Note - all of the type specification I did is redundant - the compiler can infer all the types in play here. I added them simply to be clear to people new to Rust, as I expect this question to be popular with that group!
 
 
-## Resources
+## Epic Resources
 
-- [play.rust-lang.org](play.rust-lang.org)
-- [https://cheats.rs](https://cheats.rs)
+- [Rust Playground](play.rust-lang.org)
+- [Rust Cheatsheet](https://cheats.rs)
+- [Rust By Example](https://doc.rust-lang.org/rust-by-example/)
