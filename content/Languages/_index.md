@@ -7,4 +7,4 @@ insert_anchor_links = "left"
 
 New, old, w/e programming languages that I've been going through, not top info but useful to remember
 
-![img](img/computer.png "code")
+![img](computer.png "code")

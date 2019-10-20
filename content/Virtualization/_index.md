@@ -1,8 +1,10 @@
 +++
 title = "Virtualization"
-weight = 1
+weight = 4
 sort_by = "weight"
 insert_anchor_links = "left"
 +++
 
-![img](img/virtualization.png)
+Virtualization things good to have in mind...
+
+![img](virtualization.png "Virtualization")
