@@ -239,6 +239,101 @@ fn main() {
 
 Note - all of the type specification I did is redundant - the compiler can infer all the types in play here. I added them simply to be clear to people new to Rust, as I expect this question to be popular with that group!
 
+## Ownership & Borrowing
+
+- Eliminates all mem unsafety then will never seg fault
+    - When a program tries to access to a Virt mem space outside of it's allowed area (seg Fault)
+- With a strict static compile time checking (Borrow checker:
+    - Seg faults: ^^
+    - Buffer Overruns: Read off the end of an array
+    - Dangling Pointers: Memory freed but the pointer is still there, then you could try to use it (in other languages)
+    - Double frees: Allocate mem, free them, an then free them again, causing issues and revealing sensitive info
+    - Use-After-Frees: Tries to use the mem already freed
+
+- GC: Statically compiled, minimum impact on performance
+- Concurrency:
+    - Fearless concurrency: The mem management of Rust and the Borrow checker takes care about preventing and avoid data races.
+
+- Ownership sample:
+```rust
+// a owns the value
+let a = foo();
+
+// now b owns the value
+let b = a;
+
+// ownership passed to do_something()
+do_something(b);
+
+// This will fail
+do_something_else(b);
+```
+
+- How Ownership works:
+    - Every valuee has an owner
+    - Ownership can be passed around by binding and/or function calls
+    - Once ownership is passed, the old binding can't be user again
+    - This prevents use-after-free
+
+- Borrowing sample
+```rust
+// a owns the value
+let a = foo();
+
+// a still owns the value
+let b = &a;
+
+// But functions still could use it
+do_something_yet_again(&a);
+```
+
+- How Mut and non-Mut Borrowing works:
+    - You cannot pass the ownership of a borrowed var
+    - In the past example you cannot pass the ownership of b
+    - Borrowed values are inmutable, even if the value is mutable that borrow can't be used to mutate the value
+    - Either One mutable or Many inmutable borrows
+    - You can share state or you can mutate state but you can't do both
+
+- Mutable Borrowing sample
+```rust
+let a = foo();
+let b = &a;
+
+// Error, Cannot move borrowed value
+do_something(a);
+```
+
+- Mutable borrows:
+    - Allow values to be changed without transfering the ownership
+    - Ony one mutable borrow can exists at one and non-mutable borrows can exist a the same time
+
+- Sample Mut and non-Mut to the same borrow
+```rust
+let mut a = 10;
+let b = &mut a;
+b += 1;
+
+// Error cannot have mutable and inmutable borrows
+let c = &a;
+b += 1;
+```
+
+- RAII
+    - Stands for Resource Allocation is Initialization
+    - You get resources (mem, files, db cons) when you initialize them and free them when you de-initialize them
+    - Ownership make this easy for Rust to be managed
+
+- RAII Sample
+```rust
+fn munge_file() {
+    let mut file = File::create("file.txt")?;
+    file.write_all(b"hello world");
+} // file closed auto when the functions finishes because no-one is owning the file handler
+```
+
+
+
+
 
 ## Epic Resources
 
