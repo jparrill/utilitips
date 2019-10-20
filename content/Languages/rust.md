@@ -244,3 +244,4 @@ Note - all of the type specification I did is redundant - the compiler can infer
 - [Rust Playground](play.rust-lang.org)
 - [Rust Cheatsheet](https://cheats.rs)
 - [Rust By Example](https://doc.rust-lang.org/rust-by-example/)
+- [Rust Programming Language (Book)](https://doc.rust-lang.org/book/)
