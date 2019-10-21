@@ -396,6 +396,43 @@ fn main() {
 5
 ```
 
+### Strs, Vecs, Strings and Slices
+
+- Strings and Vecs are almost the same:
+    - Heap allocated
+    - Consist of a pointer to that heap memory and a little data
+    - when we create a Vec, we receive a lenght and a pointer where the vec starts
+
+![img](vec_strings.png)
+
+- Slices & Strs
+    - Allow passing around views into hep without copying values or passing raw pointers
+    - They consist also on a pointer and a lenght but without owning the data
+    - WARN: You Can't directly hold an str or a slice because ir doesn't own the it's mem 
+    - WARN: You have to have a reference, since it is basically a reference (and the original vars are freed)
+
+- Sample code
+```rust
+let a = vec![1,2,4,6,7,8];
+let sla = &a[1..2];
+// sla = &[2,4]
+
+let b = String::from("Hello");
+let slb = &b[1..2];
+// slb = "el"
+```
+
+### Strict Borrow checker
+
+- Cannot borrow as inmutable due to existing mutable borrow
+- Cannot borrow as mutable due to existing inmutable borrow
+- Cannot have multiple mutable borrows
+- Cannot move while borrow exists
+- Cannot use moved value
+
+- 
+
+![img](slices.png)
 
 
 ## Epic Resources
