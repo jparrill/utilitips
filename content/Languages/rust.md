@@ -331,7 +331,70 @@ fn munge_file() {
 } // file closed auto when the functions finishes because no-one is owning the file handler
 ```
 
+- Shared and exclusive Access, sample
+```rust
+fn take_ownership_of_value(v: Vec<i32>) -> i32 { 
+    let mut sum = 0;
+    for val in v { sum += val; }
+    return sum;
+}
 
+fn main() {
+    let arr = vec![1,2,3,4,5,6,7,8,9];
+    let sum = take_ownership_of_value(arr);
+    // This will give us an err because the function 'take_ownership_of_value'
+    // owns the value and when finishes frees the resource.
+    println!("Sum of {} values: {}", arr.len(), sum);
+}
+
+```
+
+- But we could do this instead:
+```rust
+fn borrow_sum (v: &Vec<i32>) -> i32 {
+    // Receives a reference (mem position)
+    let mut sum = 0;
+    for val in v { // We iterate over mem positions.
+        // This is a pointer that points to the content.
+        sum += *val;  
+    }
+    return sum;
+}
+
+fn main() {
+    let arr = vec![1,2,3,4,5,6,7,8,9];
+    let sum = borrow_sum(&arr);
+    println!("Sum of {} values: {}", &arr.len(), sum);
+}
+```
+
+- Sample of mutable reference to vector
+```rust
+fn cap_value_borrow(max: i32, v: &mut Vec<i32>) {
+    for index in 0..v.len() {
+        if v[index] > max {
+            v[index] = max;
+        }
+    }
+}
+
+fn main() {
+    let mut arr = vec![1,2,3,500000,4,5];
+    cap_value_borrow(10, &mut arr);
+    for v in arr {
+        println!("{}", v);
+    }
+}
+
+// The output
+:!./vec_mut_ref                                                                                                                                                                                         
+1
+2
+3
+10
+4
+5
+```
 
 
 
