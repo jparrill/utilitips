@@ -1,6 +1,6 @@
 +++
 title = "C"
-weight = 4
+weight = 2
 insert_anchor_links = "left"
 +++
 

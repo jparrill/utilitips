@@ -1,6 +1,6 @@
 +++
 title = "Shell"
-weight = 6
+weight = 5
 insert_anchor_links = "left"
 +++
 

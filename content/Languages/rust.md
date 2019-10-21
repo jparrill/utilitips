@@ -1,6 +1,6 @@
 +++
 title = "Rust"
-weight = 3
+weight = 1
 insert_anchor_links = "left"
 +++
 
