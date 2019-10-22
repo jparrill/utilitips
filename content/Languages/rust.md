@@ -432,6 +432,100 @@ let slb = &b[1..2];
 ![img](../slices.png "Slices")
 
 
+### Structs & Enums
+
+- Sample of Struct
+```rust
+#[derive(Debug, Deserialize)]
+pub struct Global {
+    pub repository_path: String,
+    pub content_root_path: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Settings {
+    pub debug: bool,
+    pub global: Global,
+}
+
+let config = matches.value_of("config").unwrap();
+let settings = Settings::new(config).unwrap()
+println!("You have all of this topics at {}/{}:\n",
+        settings.global.repository_path, 
+        settings.global.content_root_path);
+```
+
+- Sample of enums
+```rust
+#[derive(PartialEq)]
+enum Animal {
+    Cat,
+    Dog,
+}
+
+// This will fail because are not the same animal.
+fn main() {
+    let pet = Animal::Dog;
+    let other_pet = Animal::Cat;
+
+    assert!(pet == other_pet);
+
+}
+```
+
+- Sample Enums with match in a complex one
+```rust
+enum Action {
+    Drive,
+    Turn(Direction),
+    Stop
+}
+
+enum Direction {
+    Left,
+    Right,
+}
+
+print_action(a: Action) {
+    match a {
+        // The compiler will take care about to cover all cases
+        Action::Drive => println!("Go Forward"),
+        Action::Turn(direction) => match direction {
+            // This is chcking inside of Direction enum
+            Direction::Left => println!("Turn Left!!"),
+            Direction::Right => println!("Turn Right!!"),
+        }
+        Action::Pickup => println!("Pick up Object!"),
+        Action::Stop => println!("Stop!")
+    }
+}
+
+
+fn main() {
+    let program = vec![
+        Action::Drive, 
+        Action::Turn(Direction::Left), 
+        Action::Drive, 
+        Action::Pickup,
+        Action::Turn(Direction::Left), 
+        Action::Turn(Direction::Left), 
+        Action::Turn(Direction::Left), 
+        Action::Drive,
+        Action::Turn(Direction::Right),
+        Action::Drive,
+        Action::Stop
+    ];
+    for action in program {
+        print_action(action)
+    }
+}
+
+
+```
+
+
+
+
 ## Epic Resources
 
 - [Rust Playground](play.rust-lang.org)
