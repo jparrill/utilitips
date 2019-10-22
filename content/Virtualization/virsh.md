@@ -1,7 +1,6 @@
 +++
 title = "Virsh"
 weight = 51
-insert_anchor_links = "left"
 +++
 
 - List ips assigned on a network

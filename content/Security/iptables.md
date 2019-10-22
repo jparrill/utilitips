@@ -1,7 +1,6 @@
 +++
 title = "Iptables"
 weight = 42
-insert_anchor_links = "left"
 +++
 
 - Check rules that are bothering/blocking connections that you need

@@ -1,7 +1,6 @@
 +++
 title = "Rust"
 weight = 1
-insert_anchor_links = "left"
 +++
 
 ## Fedora Perks
@@ -403,7 +402,7 @@ fn main() {
     - Consist of a pointer to that heap memory and a little data
     - when we create a Vec, we receive a lenght and a pointer where the vec starts
 
-![img](vec_strings.png "vector and strigs")
+![img](../vec_strings.png "vector and strigs")
 
 - Slices & Strs
     - Allow passing around views into hep without copying values or passing raw pointers
@@ -430,7 +429,7 @@ let slb = &b[1..2];
 - Cannot move while borrow exists
 - Cannot use moved value
 
-![img](slices.png "Slices")
+![img](../slices.png "Slices")
 
 
 ## Epic Resources

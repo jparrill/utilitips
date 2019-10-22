@@ -1,7 +1,6 @@
 +++
 title = "Docker-Compose"
 weight = 11
-insert_anchor_links = "left"
 +++
 
 - Spin up a compose file as a daemon

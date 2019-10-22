@@ -1,7 +1,6 @@
 +++
 title = "Ansible"
 weight = 4
-insert_anchor_links = "left"
 +++
 
 - Cgroups and callbacks
