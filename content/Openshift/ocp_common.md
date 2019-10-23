@@ -46,5 +46,11 @@ oc --config ocp/auth/kubeconfig get machines -n openshift-machine-api --no-heade
 OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE=registry.svc.ci.openshift.org/ocp/release:4.2.0-0.nightly-2019-08-19-113631
 ```
 
+- Add insecure registry to Master Nodes using Machine Config Operator
+```
+oc patch image.config.openshift.io/cluster -p '{"spec":{"allowedRegistriesForImport":[{"domainName":"brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888","insecure":true}],"registrySources":{"insecureRegistries":["brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888"]}}}' --type='merge'
+```
+
+
 - Change SDN on installation time:
     - https://docs.openshift.com/container-platform/4.1/installing/installing_aws/installing-aws-network-customizations.html#network-customization-config-yaml_installing-aws-network-customizations
