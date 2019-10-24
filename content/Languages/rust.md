@@ -578,6 +578,83 @@ fn main(){
 This is some INPUT.
 ```
 
+### Traits and Generics
+
+- Traits:
+    - Allow us to group types based on behaviour
+    - Like anything that can be read from, such as a file or a network conn has the Read trait
+    - Similar to interfaces in OOP (Object Oriented Programming)
+
+- Non-so much useful sample xD
+```rust
+struct Foo {x: u32}
+
+trait Print {
+    fn print(&self);
+}
+
+impl Print for Foo {
+    fn print(&self) {
+        println!("{}", self.x)
+    }
+}
+
+// To call this implementation just use this snippet 
+// let a = Foo {x = 20};
+// a.print()
+```
+
+- Practical sample
+```rust
+struct config {
+    has_config: bool,
+    file_name: String,
+    path: String,
+}
+
+trait Create {
+    fn create(&self);
+}
+
+impl Create for config {
+    fn create(&self) {
+        if (self.has_config) {
+            File::create(format!("{}/{}", self.path, self,file_name));
+        }
+    }
+}
+```
+
+- Built-in traits 
+    - Non-partial means infallible
+    - Eq/PartialEq: Allow values to be compared and put in order
+        - Some floating point ops, will just implement a PartialEq because could compared with themselves and return false
+        
+    - Ord/PartialOrd: Ordering elements of the same type
+    ```
+    if a < b && b < c {
+        a < c
+    }
+    if a == b && b == c {
+        a == c
+    }
+    ```
+    - Display: allows you to format with the default formatter, fit for users to read
+    ```
+    println!("{}", display);
+    ```
+    - Debug: Similar to display but for debug situations
+    ```
+    println!("{:?}", debug);  // non-pretty view
+    println!("{:#?}", debug); // pretty view
+    ```
+    - Clone: Allows a value to be explicitly cloned
+    ```
+    let a = foo();
+    let b = a.clone();
+    ```
+    - Copy: Do the same as clone but the compiler will do it for you.
+    - Iterator: Allows the `for ... in ...` syntax to work on HashMap, Vec, LinkedList, ... and many others collections
 
 
 ## Epic Resources
