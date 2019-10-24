@@ -657,6 +657,92 @@ impl Create for config {
     - Iterator: Allows the `for ... in ...` syntax to work on HashMap, Vec, LinkedList, ... and many others collections
 
 
+- Generic functions
+    - Create functions with generic type parameters
+    ```rust
+    fn print<T: Display>(t: T) {
+        println!("{}", t);
+    }
+    ```
+    
+    - As you see you need to ensure that the type that are you passing to the function supports this trait, in this case, you need to pass all the types that support `Display` trait
+    - with generic functions you will gain some flexibility without describe the entry parameter, but you need to implement the `Trait` and the function associated
+    - Very useful to re-use code and avoid DRY
+
+- Generic Types
+    - Allows you to be more concise with your code
+    - Useful when creating collections and other data structures
+    - Allows users of a library more flexibility
+    - Sample:
+    ```rust
+    struct Tagged<T> {
+        value: T,
+        tag: String.
+    }
+
+    impl<T> Tagged<T> {
+        fn tag(&self) -> String {
+            sleft.tag.clone()
+        }
+    }
+    ```
+
+    - Existing Generic Types:
+        - Vec, HashMap, LinkedList
+        - Smart Pointers(
+            // Single Value + Extra functionality
+            - Box
+            - Arc: Atomic Reference Counting
+            - Rc: Reference Counting
+            - Mutex
+            - etc...
+        )
+        - Option and result types
+
+- Static Distpatching
+    - The usual way of work is using Static Dispatch which involves static basic functions with explicit arguments types and a clear return type.
+    - When we use the generic types, the compiler takes care of catch the generic function and create all the possiblities in a process called "Monomorphization"
+
+    ![img](../Languages/monomorphization.png "Monomorphization Process")
+
+    - Monomorphization characteristics:
+        - Extremely fast (no extra pointers)
+        - Requires static reasoning about types
+            - The compiler need to know extacly which type you are going to use at compile time in each instance because it just swaps out function call
+        - No runtime heterogeneity of types
+            - You can't have a function that you don't know when it's passed a variable, what type that variable is, then here is where Dynamic Distpatching comes in.
+
+- Dynamic Distpatching
+    - Dynamic distpatch looks up the correct functions at runtime
+    - Performance penalty because an extra pointer lookup is required
+    - Can deal with runtime heterogeneity
+    - Sample:
+    ```rust
+    fn show_all(v: Vec<&dyn Display>) {
+        for item in v {
+            println!("{}", item);
+        }
+    }
+
+    fn main() {
+        // Here we force the reference to 12 to be a Display trait type, also with the String
+        // and then we passes them to show_all function which receives a Dynamic Vector that contains
+        // just Display types, and then get them printed.
+        let v = vec![&12 as &Display, &"Hi all!" as &Display];
+        // This is quite important because in the end we've changed the morpholoy
+        show_all(v);
+    }
+    ```
+        - Monomorphization is preferred, and you need to be sure that you want to use this feature
+        - Ugly sintax and also long compile times
+        - It uses v-tables, introduction to extra pointer lookup
+
+    ![img](./extra_pointer_lookup.png "Poiner Lookup")
+
+        - Which means:
+            We have a Pointer to the argumment (cannot be passed by value), then you have a pointer to the v-table and this v-table will have a pointer to a function which is actually called. This have a very serious performance penalty like in an example Dyn Distpatch it's called in a loop in a performance critical section of the code
+
+
 ## Epic Resources
 
 - [Rust Playground](play.rust-lang.org)
