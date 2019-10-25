@@ -5,11 +5,13 @@ weight = 1
 
 ## Fedora Perks
 
-- DNF
+## DNF
 
 ```bash
 sudo dnf install rust rust-doc.x86_64 rust-std-static.x86_64 rust-debugger-common.noarch rust-analysis.x86_64 rust-packaging.x86_64 --best --allowerasing -y
 ```
+
+## IDEs
 
 - Nvim
 ```vim
@@ -20,7 +22,16 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 ```
 
-## Lang
+- VSCode
+  - Required: rustup + RLS
+  - Extensions:
+    - Rust Base
+    - Rust (rls)
+    - Rust Snippets
+    - Rust Test Lens
+    - Rust Doc Viewer 
+
+## Basics 
 
 - Immutable, this next program will not compile
 
@@ -52,7 +63,7 @@ fn main() {
 }
 ```
 
-- Types
+### Types
 
 ```rust
 // Bools
@@ -110,53 +121,6 @@ fn main() {
     let b = 3;
     println!("{} + {} is {}", a, b, add(a,b));
     println!("{} + {} is {}", a, b, add_2(a,b));
-}
-```
-
-- Crates and Modules
-
-```rust
-use std::collections::LinkedList;
-
-fn main() {
-    let mut ll = LinkedList::new();
-    ll.push_back(1);
-    ll.push_back(2);
-    ll.push_back(4);
-
-    for a in ll {
-        println!("{}", a);
-    }
-}
-```
-
-```rust
-use std::collections::Vec;
-
-fn main() {
-    let mut v = Vec::new();
-    v.push('x');
-    v.push('y');
-    v.push('z');
-
-    for a in v {
-        println!("{}", a);
-    }
-}
-```
-
-- New module
-```rust
-use hello::say_hello;
-
-mod hello {
-    pub fn say_hello() {
-        println("Hello World!");
-    }
-}
-
-fn main() {
-    say_hello();
 }
 ```
 
@@ -237,6 +201,55 @@ fn main() {
 ```
 
 Note - all of the type specification I did is redundant - the compiler can infer all the types in play here. I added them simply to be clear to people new to Rust, as I expect this question to be popular with that group!
+
+
+## Crates and Modules
+
+```rust
+use std::collections::LinkedList;
+
+fn main() {
+    let mut ll = LinkedList::new();
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_back(4);
+
+    for a in ll {
+        println!("{}", a);
+    }
+}
+```
+
+```rust
+use std::collections::Vec;
+
+fn main() {
+    let mut v = Vec::new();
+    v.push('x');
+    v.push('y');
+    v.push('z');
+
+    for a in v {
+        println!("{}", a);
+    }
+}
+```
+
+- New module
+```rust
+use hello::say_hello;
+
+mod hello {
+    pub fn say_hello() {
+        println("Hello World!");
+    }
+}
+
+fn main() {
+    say_hello();
+}
+```
+
 
 ## Ownership & Borrowing
 
@@ -395,7 +408,7 @@ fn main() {
 5
 ```
 
-### Strs, Vecs, Strings and Slices
+## Strs, Vecs, Strings and Slices
 
 - Strings and Vecs are almost the same:
     - Heap allocated
@@ -421,7 +434,7 @@ let slb = &b[1..2];
 // slb = "el"
 ```
 
-### Strict Borrow checker
+## Strict Borrow checker
 
 - Cannot borrow as inmutable due to existing mutable borrow
 - Cannot borrow as mutable due to existing inmutable borrow
@@ -432,7 +445,7 @@ let slb = &b[1..2];
 ![img](../slices.png "Slices")
 
 
-### Structs & Enums
+## Structs & Enums
 
 - Sample of Struct
 ```rust
@@ -578,7 +591,7 @@ fn main(){
 This is some INPUT.
 ```
 
-### Traits and Generics
+## Traits and Generics
 
 - Traits:
     - Allow us to group types based on behaviour
@@ -789,7 +802,7 @@ fn main() {
             We have a Pointer to the argumment (cannot be passed by value), then you have a pointer to the v-table and this v-table will have a pointer to a function which is actually called. This have a very serious performance penalty like in an example Dyn Distpatch it's called in a loop in a performance critical section of the code
 
 
-### Functional features and Concurrency
+## Functional features and Concurrency
 
 - Closures:
     - It's an element that captures its environment or closes over it
