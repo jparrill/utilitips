@@ -783,7 +783,7 @@ fn main() {
         - Ugly sintax and also long compile times
         - It uses v-tables, introduction to extra pointer lookup
 
-    ![img](../extra_pointer_lookup.png pointer lookup")
+    ![img](../extra_pointer_lookup.png "pointer lookup")
 
         - Which means:
             We have a Pointer to the argumment (cannot be passed by value), then you have a pointer to the v-table and this v-table will have a pointer to a function which is actually called. This have a very serious performance penalty like in an example Dyn Distpatch it's called in a loop in a performance critical section of the code
