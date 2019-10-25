@@ -789,6 +789,79 @@ fn main() {
             We have a Pointer to the argumment (cannot be passed by value), then you have a pointer to the v-table and this v-table will have a pointer to a function which is actually called. This have a very serious performance penalty like in an example Dyn Distpatch it's called in a loop in a performance critical section of the code
 
 
+### Functional features and Concurrency
+
+- Closures:
+    - It's an element that captures its environment or closes over it
+    - It is defined in line with other code and can access bindings declared in that code
+    - They are anonymous and their types cannot be named
+    - sample:
+    ```rust
+    fn main() {
+        let closure1 = |x| { x + 1 };
+        println!("{}", closure1(2));
+        //prints 3
+    }
+    ```
+    - Is written with `| arg1, arg2, argN |`
+    - It implements one of the Fn family of traits, meaning it can be called with the () syntax, like a function.
+    - sample:
+    ```rust
+    fn main() {
+        let val = 10;
+        let closure2 = |x| { x + val };
+        println!("{}", closure2(2)); 
+        // Prints 12
+    }
+    ```
+    - We cannot write the type of a function
+    - It's called an anonymous type of unspeakable type
+    - This will give us an error:
+    ```rust
+    fn main() {
+        let c: Type = |x| { x + 1 };
+    }
+    ```
+    - To return it or accept it in a function, we must use generics or a dynamic trait object
+    - sample:
+    ```rust
+    fn <T: Fn(i32) -> i32> f1()-> T {
+        let f = |x| { x + 1 };
+        return f;
+    }
+
+    fn f2() -> Box<dyn Fn(i32) -> i32 > {
+        let f = |x| { x + 1};
+        return f;
+    }
+    ```
+
+    - Fn traits
+        - Fn: Can run any number of times, only using inmutable bindings, Does not allocate memory because does not take ownership of anything
+        - FnMut: Can run any number of times, only using Mutable and Inmutable bindings. Does not allocate Memory because does not take ownership of anything
+        - FnOnce: Can run Once, taking ownership of captured bindings, Allocates mem
+
+- Threads
+    - Any FnOnce can be spawned into a thread
+    - sample:
+    ```rust
+    use std::thread
+
+    let handle = thread::spawn(|| {
+        println!("From a thread!");
+    });
+    println!("Before a thread!")
+
+    // Wait for execution
+    handle.join();
+    ```
+    - This is done using std::thread::spawn
+    - It creates a full OS threads, not green like Go or coroutines like Lua
+    - Fn Trait separation makes concurrency fearless
+
+
+
+
 ## Epic Resources
 
 - [Rust Playground](play.rust-lang.org)
