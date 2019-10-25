@@ -682,7 +682,7 @@ impl Create for config {
 
     impl<T> Tagged<T> {
         fn tag(&self) -> String {
-            sleft.tag.clone()
+            self.tag.clone()
         }
     }
     ```
