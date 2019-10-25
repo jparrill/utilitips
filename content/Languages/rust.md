@@ -619,9 +619,55 @@ trait Create {
 impl Create for config {
     fn create(&self) {
         if (self.has_config) {
-            File::create(format!("{}/{}", self.path, self,file_name));
+            File::create(format!("{}/{}", self.path, self.file_name));
         }
     }
+}
+```
+
+- More practical samples
+```rust
+struct Dwarf {
+    name: String
+}
+
+struct Elf {
+    name: String
+}
+
+struct HalfOrc {
+    name: String
+}
+
+struct Human {
+    name: String
+}
+
+pub trait Constitution {
+    fn constitution_bonus(&self) -> u8 {
+        0
+    }
+}
+
+impl Constitution for HalfOrc {
+    fn constitution_bonus(&self) -> u8 {
+        1
+    }
+}
+
+impl Constitution for Dwarf {
+    fn constitution_bonus(&self) -> u8 {
+        2
+    }
+}
+
+fn main() {
+
+    let my_dwarf = Dwarf {name: String::from("ParriDwarf")};
+    let my_horc = HalfOrc {name: String::from("ParriHOrc")};
+
+    println!("{}", my_dwarf.constitution_bonus());
+    println!("{}",my_horc.constitution_bonus());
 }
 ```
 
