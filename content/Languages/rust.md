@@ -872,6 +872,55 @@ fn main() {
     - It creates a full OS threads, not green like Go or coroutines like Lua
     - Fn Trait separation makes concurrency fearless
 
+- Iterators
+    - Iterators are types which implement the iterator trait method, requiring a .next() method associated to the type
+    - There are 3 methods which generally create iterators:
+        - `x.into_iter()`: Gives an iterator over T
+        - `x.iter_mut()`: Gives an iterator over &mut T
+        - `x.iter()`: Gives an iterator over &T
+    - Sample:
+    ```rust
+    let mut iterator = (1..5).into_iter();
+    iterator.next(); //Some(1)
+    iterator.next(); //Some(2)
+    iterator.next(); //Some(3)
+    iterator.next(); //Some(4)
+    iterator.next(); //None
+    iterator.next(); //None
+    iterator.next(); //None
+    ```
+    - when the iterator gets exhausted, returns `None`
+    - Other methods:
+        - `take()` & `skip()` Sample code:
+        ```rust
+        let mut iterator(1..10).into?iter();
+        iterator.skip(2);
+        iterator.next(); //Some(3)
+        let taken = iterator.take(2);
+        taken.next(); //Some(4)
+        taken.next(); //Some(5)
+        taken.next(); //None
+        ```
+
+    - `enumerate()`:
+    ```rust
+    let mut iterator = vec![
+        "A",
+        "B",
+        "C"].into_iter();
+    let enumerated = iterator.enumerate();
+    enumerated.next(); //Some((0, "A"))
+    enumerated.next(); //Some((1, "B"))
+    ```
+- Iterators are Lazy!, this is important because just store in memory the actual value and the next one, the you could use it on a interator without exhaust the memory
+- You could also concile the iterator using the trait `collect()`
+```rust
+let mut iterator = (1..10).into_iter();
+iterator.skip(2);
+let taken = iterator.take(4);
+lev v: Vec<i32> = taken.collect();
+// vec![3,4,5,6]
+```
 
 
 
