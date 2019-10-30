@@ -922,6 +922,62 @@ lev v: Vec<i32> = taken.collect();
 // vec![3,4,5,6]
 ```
 
+- Map, Filer and Fold
+    - Mixes iterators with closures for functional programming
+    - Map allows runnin a function on each element of an interator in a sequence generating another iterator:
+    ```rust
+    let items = (1..10).into_iter();
+    let other_items: Vec<i32> = items.map(|x| { x + 1 }).collect();
+    ```
+    this ^^ is like:
+    ```rust
+    let items = (1..10).into_iter();
+    let mut other_items = Vec::new();
+    for item in items {
+        other_items.push(x + 1);
+    }
+    ```
+
+    - Maps are lazy also and could be conbined any number of times:
+    ```rust
+    let items = (1..10).into_iter();
+    let other_items: Vec<i32> = iter
+        .map(|x| { foo(x, 12) }) //i32
+        .map(|x| { bar(x, "Hello") }) //String
+        .map(|x| { baz(x) }) //String
+        .map(|x| { fuz(x, bar(x)) }) //i32
+        .collect();
+    ```
+    - Filter
+        - Accept or reject items from an iterator based on a predicate, a function takes a single item and returns a bool, if the item is false, is discardad, otherwise it is retained
+        ```rust
+        let items = (1..10).into_iter();
+        let evens: Vec<_> = items
+            .filter(|x| { x % 2 == 0 }).
+            .collect();
+        // vec![2,4,6,8]
+        ```
+    - Fold
+        - Known as `reduce` in other langs
+        - applies a function to each element from an iterator along with an accumulator:
+        ```rust
+        let items = (1..10).into_iter();
+        items.fold(0, |sum, item| {
+            sum + item
+        });
+        //45
+        ```
+    - put them together:
+    ```rust
+    (1..100).into_iter();
+        .filter(|x| {2 % x == 1})
+        .map(|x| {x * x})
+        .filter(|x| {x % 5 != 0})
+        .fold(0, |sum, x| {sum + x});
+    ```
+    - Functional style can be concise and still easy to read
+    - in addition, because iterator ops, map and filter are lazy, the compiler can make function code extremelly speedy and mem efficient
+
 
 
 ## Epic Resources
