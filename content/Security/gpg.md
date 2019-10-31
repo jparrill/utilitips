@@ -77,6 +77,11 @@ gpg --export --armor --output jparrill_redhat.asc jparrill@redhat.com
 gpg --list-secret-keys --keyid-format LONG
 ```
 
+- Upload GPG to public server
+```
+gpg --send-keys --keyserver hkp://pgp.mit.edu KEY_ID
+```
+
 - Export Secret from ID
 ```
 gpg --export-secret-keys BA202938CB1C0C1E251F966ADE30627E53AC3969 > jparrill_redhat_priv.asc
