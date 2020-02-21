@@ -28,3 +28,8 @@ racadm -r "10.5.35.2" -u root -p "p4ssW0rD" getsysinfo
 alias racadm="sshpass -e ssh -oStrictHostKeyChecking=no root@$10.5.35.2 racadm"
 racadm getsysinfo
 ```
+
+- Follow an OCP installation with watch
+```
+watch "tail -n 4 clusterconfigs/.openshift_install.log; oc get po -A -o wide | grep -v -E 'Running|Complete';oc get bmh -A; oc get machines -A; oc get nodes"
+```
