@@ -3,6 +3,12 @@ title = "Openshift Common"
 weight = 31
 +++
 
+- E2E validation of a OCP4 deployment
+```
+- https://access.redhat.com/containers/?tab=overview&get-method=registry-tokens#/registry.access.redhat.com/openshift4/ose-tests
+- https://access.redhat.com/containers/?tab=images&get-method=registry-tokens#/registry.access.redhat.com/openshift4/ose-tests
+```
+
 - Untaint master in order to let the OCP installer continue with pod deployment
 ```
 oc adm taint nodes -l node-role.kubernetes.io/master node-role.kubernetes.io/master:NoSchedule-
