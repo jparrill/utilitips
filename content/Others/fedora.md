@@ -1,6 +1,6 @@
 +++
 title = "Fedora OS"
-weight = 63
+weight = 93
 +++
 
 - Get packages installed by user

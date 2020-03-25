@@ -1,6 +1,6 @@
 +++
 title = "Homelab"
-weight = 62
+weight = 92
 +++
 
 ```
