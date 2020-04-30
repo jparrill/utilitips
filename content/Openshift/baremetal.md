@@ -33,3 +33,12 @@ racadm getsysinfo
 ```
 watch "tail -n 4 clusterconfigs/.openshift_install.log; oc get po -A -o wide | grep -v -E 'Running|Complete';oc get bmh -A; oc get machines -A; oc get nodes"
 ```
+
+- Deleting "Bad" BareMetal Nodes
+
+    1. Create bmh resource and wait until it's Ready
+    2. Scale up machineset to start deployment
+    3. **Do not** Delete bmh
+    4. Annotate "bad" or failed nodes with machine.openshift.io/cluster-api-delete-machine=yes 
+    5. Scale down replicas to match the number of existing worker nodes
+    6. This will automatically delete "bad" nodes
