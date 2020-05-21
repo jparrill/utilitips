@@ -42,3 +42,14 @@ watch "tail -n 4 clusterconfigs/.openshift_install.log; oc get po -A -o wide | g
     4. Annotate "bad" or failed nodes with machine.openshift.io/cluster-api-delete-machine=yes 
     5. Scale down replicas to match the number of existing worker nodes
     6. This will automatically delete "bad" nodes
+
+- Get the Kubeconfig from a Hive secret and put in a file
+```
+oc get secret -n hive mgmt-spoke1-0-s55zb-admin-kubeconfig -o jsonpath='{.data.kubeconfig}' | base64 -d > ~/repos/hive/spoke1/kubeconfig_spoke1
+```
+
+- Get the Kubeadmin password from a Hive secret and put it in a file
+```
+oc get secret mgmt-spoke1-0-s55zb-admin-password -o jsonpath='{.data.password}' | base64 -d > ~/repos/hive/spoke1/kube
+```
+
