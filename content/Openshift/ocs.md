@@ -1,6 +1,6 @@
 +++
-title = "OCP - Storage"
-weight = 33
+title = "OCP - Storage Platform"
+weight = 35
 +++
 
 - Disks mapping on OCS configuration
